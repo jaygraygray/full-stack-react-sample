@@ -7,7 +7,7 @@ class Home extends Component {
   constructor() {
    super()
    this.state = {
-     apiData: null
+     apiData: []
    }
  }
 
@@ -23,15 +23,33 @@ class Home extends Component {
     axios.get(`http://localhost:9998/view/${section}`).then( r => this.setState({ apiData: r.data }))
   }
  render() {
-   console.log( this.state.apiData )
+  const ArticlesList = this.state.apiData.map( data => {
+   return (
+    <Article 
+     image={data.imgData}
+     title={data.title}
+     body={data.abstract}
+     author={data.byline}
+     date={data.date}
+     url={data.url}
+    />
+   )
+  })
+ 
+  const {container} = style
+
   return (
-   <div>
-    {this.state.apiData && this.state.apiData.map( data => { return <div><b>Title:</b> {data.title} </div> }) }
-    
-    <Article/>
+   <div style={container}>
+
+    {this.state.apiData && ArticlesList }
+   
    </div>
   );
  }
 }
-
+const style = {
+ container : {
+  marginTop: '68px'
+ }
+}
 export default Home;

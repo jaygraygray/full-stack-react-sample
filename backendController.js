@@ -14,7 +14,7 @@ module.exports = {
           abstract: data.abstract,
           byline: data.byline,
           date: data.created_date,
-          imgData: data.multimedia,
+          imgData: data.multimedia[3],
           title: data.title,
           url: data.url
         }

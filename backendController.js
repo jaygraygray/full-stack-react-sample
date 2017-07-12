@@ -9,7 +9,17 @@ module.exports = {
     qs: { 'api-key': CONFIG.apiKey },
     }, (req, res) => { 
       let data = JSON.parse(res.body)
-      response.send( data.results ) 
+      let results = data.results.map( (data) => {
+        return {
+          abstract: data.abstract,
+          byline: data.byline,
+          date: data.created_date,
+          imgData: data.multimedia,
+          title: data.title,
+          url: data.url
+        }
+      })
+      response.send( results ) 
     }) // serve results to our view
  
   }

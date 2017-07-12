@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 
+import Article from '../components/article/Article'
+
 class Home extends Component {
   constructor() {
    super()
@@ -25,6 +27,8 @@ class Home extends Component {
   return (
    <div>
     {this.state.apiData && this.state.apiData.map( data => { return <div><b>Title:</b> {data.title} </div> }) }
+    
+    <Article/>
    </div>
   );
  }

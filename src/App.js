@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import axios from 'axios'
 
 import Header from './components/header/Header'
-class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      apiData: null
-    }
-  }
+import Home from './views/Home'
+// import Article from './views/Article'
+// import SearchResults from './views/SearchResults'
 
-  // componentDidMount() {
-  //    axios.get('http://localhost:9999/view/world').then( r => this.setState({ apiData: r.data }))
-  // }
+import { Switch, Route } from 'react-router-dom'
+class App extends Component {
+
   render() {
-    console.log(this.state.apiData)
     return (
       <div style={style.appContainer}>
         <Header />
-        <p className="App-intro">
-        
-        </p>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/:section" component={Home} />
+          {/* <Route exact path="/article/:title" component={Article} />
+          <Route exact path="/search" component={SearchResults} /> */}
+        </Switch>
       </div>
     );
   }

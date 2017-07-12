@@ -1,7 +1,7 @@
 const app = require('express')(),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      port = 9999,
+      port = 9998,
       ctrl = require('./backendController')
       CONFIG = require('./config')
 

@@ -9,12 +9,13 @@ module.exports = {
     qs: { 'api-key': CONFIG.apiKey },
     }, (req, res) => { 
       let data = JSON.parse(res.body)
+      console.log(data)
       let results = data.results.map( (data) => {
         return {
           abstract: data.abstract,
           byline: data.byline,
           date: data.created_date,
-          imgData: data.multimedia[3],
+          imgData: [data.multimedia[1], data.multimedia[3]],
           title: data.title,
           url: data.url
         }

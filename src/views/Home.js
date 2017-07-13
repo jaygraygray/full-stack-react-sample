@@ -41,7 +41,7 @@ class Home extends Component {
    return (
     <Article
      key={i}
-     image={data.imgData}
+     image={data.imgData[1]}
      title={data.title}
      body={data.abstract}
      author={data.byline}

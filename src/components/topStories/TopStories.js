@@ -8,14 +8,21 @@ import MinorHeadline from './MinorHeadline'
  class TopStories extends Component {
   render() {
    
-   const {container, h1 } = style
+   const {container, h1, ul } = style
 
    return (
+    <div>
+    <h1 style={h1}>Top Stories</h1>
     <div style={container}>
-     <h1 style={h1}>Top Stories</h1>
      <Headline story={this.props.stories[0]}/>
-     <MinorHeadline story={this.props.stories[1]}/>
-     <MinorHeadline story={this.props.stories[2]}/> 
+     
+     <ul style={ul}>
+      <li><MinorHeadline story={this.props.stories[1]}/></li>
+      <li><MinorHeadline story={this.props.stories[2]}/></li>
+     </ul>
+     
+      
+    </div>
     </div>
    );
   }
@@ -23,13 +30,17 @@ import MinorHeadline from './MinorHeadline'
 
  const style = {
   container : {
-   width: '712px',
    height: '420px',
-   padding: '18px'
+   padding: '18px',
+   display: 'flex',
+   justifyContent : 'space-around'
   },
   h1 : {
    fontFamily: 'Arial',
    fontSize: '2rem'
+  },
+  ul : {
+   listStyle: 'none',
   }
  }
  

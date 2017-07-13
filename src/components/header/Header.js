@@ -23,7 +23,8 @@ class Header extends Component {
 
 const style = {
  container : {
-  width: '760px',
+  margin: 'auto',
+  width: '100%',
   height: '64px',
   background: '#242f36',
   color: '#fff',

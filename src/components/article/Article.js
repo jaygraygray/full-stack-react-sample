@@ -31,7 +31,7 @@ const style = {
   borderStyle: 'solid',
   borderWidth: '1px',
   borderColor: '#cccccc',
-   display: 'flex',
+  display: 'flex',
   flexDirection: 'left',
   justifyContent: 'space-around'
  },

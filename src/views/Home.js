@@ -56,14 +56,14 @@ class Home extends Component {
    
    <div style={container}>
     <TopStories stories={this.state.topStories}/>
-    {this.state.stories && ArticlesList }
+     {this.state.stories && ArticlesList } 
    </div>
   );
  }
 }
 const style = {
  container : {
-  marginTop: '68px'
+  marginTop: '68px',
  }
 }
 export default Home;

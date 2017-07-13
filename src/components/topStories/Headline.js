@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import moment from 'moment'
+
 class Headline extends Component {
 
 constructor() {
@@ -13,9 +15,8 @@ componentWillReceiveProps(nextProps) {
   this.setState(nextProps.story)
  }
 }
- //const { title, byline, date } = props.story
  render() {
-  console.log(this.state)
+
  const { container, info, h1, p, content, ul, li } = style
  const { title, byline, date, abstract, imgData, url } = this.state
  return (
@@ -27,7 +28,7 @@ componentWillReceiveProps(nextProps) {
      <li>
        <h1 style={h1}>{title}</h1>
        <p style={p}>{byline}</p>
-       <p style={p}>{date}</p>
+       <p style={p}>{moment(date).format('h:mm a')}</p>
       </li>
      <li>
       <img src={imgData && imgData[0].url}/>
@@ -45,8 +46,8 @@ componentWillReceiveProps(nextProps) {
 const style = {
  container : {
   height: '350px',
-  margin: '10px',
-  width: '60%',
+  margin: 'auto',
+  width: '59%',
   border: '1px solid #c1c7d4'
  },
 
@@ -58,7 +59,7 @@ const style = {
 
  h1 : {
   color: '#242f36',
-  fontSize: '1.6rem',
+  fontSize: '1.5rem',
   margin: '0'
  },
 

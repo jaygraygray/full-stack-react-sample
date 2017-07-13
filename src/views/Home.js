@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import moment from 'moment'
 
 import Article from '../components/article/Article'
 import TopStories from '../components/topStories/TopStories'
 import MinorHeadline from '../components/topStories/MinorHeadline'
 
-import  moment  from 'moment'
+
 
 class Home extends Component {
   constructor() {
@@ -24,7 +25,6 @@ class Home extends Component {
         stories: r.data.slice(4, r.data.length)
         })
       })
-      
  }
   componentDidMount() {
    var section = null
@@ -37,6 +37,7 @@ class Home extends Component {
     this.updateArticles(section)
   }
 
+  // if section changes, make sure correct articles are displayed
   componentWillReceiveProps(nextProps) {
     let section = nextProps.match.params.section
     if (section !== this.props.match.params.section) {
@@ -45,7 +46,7 @@ class Home extends Component {
   }
 
  render() {
-
+  // generate list of articles
   const ArticlesList = this.state.stories.map( (data, i) => {
    let date = moment(data.date).format('h:mm a')
    

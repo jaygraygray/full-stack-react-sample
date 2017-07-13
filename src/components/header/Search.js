@@ -1,13 +1,40 @@
 import React, { Component } from 'react';
-
+import axios from 'axios'
+import moment from 'moment'
+import { withRouter } from 'react-router-dom'
 class Search extends Component {
+  constructor() {
+    super()
+    this.state = {
+      searchTerm: ''
+    }
+    this.search = this.search.bind(this)
+    this.onSearchChange = this.onSearchChange.bind(this)
+  }
+  
+  search(e) {
+    e.preventDefault()
+    this.props.history.push('/search/' + this.state.searchTerm)
+    console.log(this.state.searchTerm)
+  }
+
+
+
+  onSearchChange(e) {
+    this.setState({
+      searchTerm: e.target.value
+    })
+    
+  }
  render() {
   const { input, searchIcon, ul, li } = style
   return (
-   <ul style={ul}>
-     <li style={li}><img style={searchIcon} src={require('./search.svg')} /></li>
-     <li style={li}><input style={input} defaultValue="Search" /> </li>
-   </ul>
+    <form onSubmit={this.search}>
+    <ul style={ul}>
+      <li style={li}><img style={searchIcon} src={require('./search.svg')}/></li>
+      <li style={li}><input style={input} defaultValue="Search"  onChange={ this.onSearchChange }/> </li>
+    </ul>
+   </form>
   );
  }
 }
@@ -38,4 +65,4 @@ const style = {
   paddingLeft: '8px'
  }
 }
-export default Search;
+export default withRouter(Search);

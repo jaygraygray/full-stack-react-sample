@@ -7,11 +7,11 @@ module.exports = {
   makeHTTPRequest({
     url: `https://api.nytimes.com/svc/topstories/v2/${request.params.section}.json`,
     qs: { 'api-key': CONFIG.apiKey },
-    }, (req, res) => { 
+    }, (NYTreq, NYTres) => { 
     
-      let data = JSON.parse(res.body)
-     console.log(data)
+      let data = JSON.parse(NYTres.body)
       let results = data.results.map( (data) => {
+        // return only necessary data
         return {
           abstract: data.abstract,
           byline: data.byline,
@@ -22,7 +22,30 @@ module.exports = {
         }
       })
       response.send( results ) 
-    }) // serve results to our view
- 
+    }) 
+  },
+
+  search: (request, response) => {
+    makeHTTPRequest({
+      url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
+      qs: {
+        'api-key': CONFIG.apiKey,
+        'q': `"${request.params.item}"`
+      }
+    }, (NYTreq, NYTres) => {
+    
+      let data = JSON.parse(NYTres.body)
+      
+      let results = data.response.docs.map( (data) => {
+        return {
+          url: data.web_url,
+          snippet: data.snippet,
+          imgData: data.multimedia[1],
+          headline: data.headline,
+          date: data.pub_date
+        }
+      })
+      response.send(results)
+    })
   }
 }

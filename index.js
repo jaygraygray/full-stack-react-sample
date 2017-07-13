@@ -13,7 +13,6 @@ app.use( cors({ origin: 'http://localhost:3000' }) )
 // Sent Endpoints
 app.get('/view/:section', ctrl.getSection)
 
-
-// app.get('/article/:title')
+app.get('/search/:item', ctrl.search)
 
 app.listen(port, console.log("Connected on port ", port))

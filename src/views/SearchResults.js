@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
@@ -10,22 +11,50 @@ class SearchResults extends Component {
  constructor() {
   super()
   this.state = {
-   searchResults : []
-  }
+   searchResults : [],
+   currentPage: null,
+   currentQuery: null
+  },
+  this.NextPage = this.NextPage.bind(this)
+  this.PrevPage = this.PrevPage.bind(this)
  }
 
  componentDidMount() {
-  let { query, page } = this.props.match.params
+  const { query, page } = this.props.match.params
   axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
-         searchResults: r.data
+         searchResults: r.data,
+         currentPage: page,
+         currentQuery: query
         })
       })
-  
  }
+
+componentWillReceiveProps(nextProps) {
+ if (this.props.location.pathname !== nextProps.location.pathname) {
+   const { query, page } = this.props.match.params
+  axios.get(`http://localhost:9998/search/${query}/${page}`)
+        .then( r => {
+        this.setState({
+         searchResults: r.data,
+         currentPage: page,
+         currentQuery: query
+        })
+      }) 
+ }
+}
  
+ NextPage() {
+  return this.props.history.push(`/search/${this.state.currentQuery}/${this.state.currentPage++}`)
+ }
+
+ PrevPage() {
+  return this.props.history.push(`/search/${this.state.currentQuery}/${this.state.currentPage--}`)
+ }
+
  render() {
+  console.log(this.props)
   const results = this.state.searchResults.map( (data, i) => {
    let date = moment(data.date).format('h:mm a')
    let image = null
@@ -50,9 +79,12 @@ class SearchResults extends Component {
    <div style={style.container}>
 
    <div style={style.breadCrumb}>
-    <Link to="/">Home</Link> > Search
+    <Link to="/">Home</Link> > Search 
    </div>
-
+   <div>
+    <div onClick={this.NextPage}>Next Page</div>
+    <div onClick={this.PrevPage}>Previous Page</div>
+   </div>
     {this.state.searchResults && results }
 
    </div>
@@ -69,4 +101,4 @@ const style = {
   fontSize: '1rem',
  }
 }
-export default SearchResults;
+export default withRouter(SearchResults);

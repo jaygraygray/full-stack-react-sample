@@ -4,12 +4,10 @@ class SearchResultArticle extends Component {
  render() {
   const { container, articleTitle, articleBody, img } = style
   const { image, title, body, date, url } = this.props
-  console.log(image)
   return (
    
    <div style={container}>
 
- 
       <img src={image} style={img} />
 
     <h1 style={articleTitle}>{title}</h1>
@@ -21,7 +19,9 @@ class SearchResultArticle extends Component {
 
 const style = {
  container: {
+  margin: 'auto',
   width: '70%',
+  height: '160px',
   borderStyle: 'solid',
   borderWidth: '1px 0 0 0',
   borderColor: '#cccccc',
@@ -30,16 +30,19 @@ const style = {
  },
  articleTitle: {
   color: '#009bde',
-  fontSize: '1.7rem',
+  fontSize: '1.3rem',
+  marginTop: '6px',
  },
  articleBody: {
-  fontSize: '1rem',
+  fontSize: '.9rem',
   color: '#242f36',
+  marginTop: '24px',
  },
  img: {
   float: 'left',
   width: '190px',
-  height: '126px'
+  height: '126px',
+  
  }
 }
 export default SearchResultArticle;

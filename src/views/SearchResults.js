@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import moment from 'moment'
 
+import { Link } from 'react-router-dom'
+
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
 class SearchResults extends Component {
@@ -46,7 +48,13 @@ class SearchResults extends Component {
   console.log(this.props)
   return (
    <div style={style.container}>
+
+   <div style={style.breadCrumb}>
+    <Link to="/">Home</Link> > Search
+   </div>
+
     {this.state.searchResults && results }
+
    </div>
   );
  }
@@ -54,6 +62,11 @@ class SearchResults extends Component {
 const style = {
  container : {
   marginTop: '68px',
+ },
+ breadCrumb: {
+  fontFamily: 'Arial',
+  margin: '109px 0 30px 176px',
+  fontSize: '1rem',
  }
 }
 export default SearchResults;

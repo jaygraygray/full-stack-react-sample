@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
+
 export default HeaderNav => {
 
  const {container, ul, li} = style
@@ -7,12 +9,12 @@ export default HeaderNav => {
  return (
   <div style={container}>
     <ul style={ul}>
-     <li style={li}>Home</li>
-     <li style={li}>World</li>
-     <li style={li}>U.S.</li>
-     <li style={li}>Politics</li>
-     <li style={li}>N.Y.</li>
-     <li style={li}>More</li>
+     <Link to="/home"><li style={li}>Home</li></Link>
+     <Link to="/opinion"><li style={li}>Opinion</li></Link>
+     <Link to="/world"><li style={li}>World</li></Link>
+     <Link to="/national"><li style={li}>U.S.</li></Link>
+     <Link to="/nyregion"><li style={li}>N.Y.</li></Link>
+     <Link to="/technology"><li style={li}>Technology</li></Link>
     </ul>
   </div>
  );

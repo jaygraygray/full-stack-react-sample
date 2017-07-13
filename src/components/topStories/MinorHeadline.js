@@ -8,7 +8,7 @@ class MinorHeadline extends Component {
   this.state = {}
  }
  componentWillReceiveProps(nextProps) {
- if (this.props.story === undefined) {
+ if (this.props.story !== nextProps.story) {
   this.setState(nextProps.story)
  }
 }

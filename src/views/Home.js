@@ -16,6 +16,16 @@ class Home extends Component {
    }
  }
 
+ updateArticles(section) {
+  axios.get(`http://localhost:9998/view/${section}`)
+      .then( r => {
+        this.setState({
+        topStories: r.data.slice(0,3),
+        stories: r.data.slice(4, r.data.length)
+        })
+      })
+      
+ }
   componentDidMount() {
    var section = null
 
@@ -24,13 +34,14 @@ class Home extends Component {
    !this.props.match.params.section ?
     section = 'home' :
     section = this.props.match.params.section
-     axios.get(`http://localhost:9998/view/${section}`)
-          .then( r => {
-           this.setState({
-            topStories: r.data.slice(0,3),
-            stories: r.data.slice(4, r.data.length)
-           })
-          })
+    this.updateArticles(section)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let section = nextProps.match.params.section
+    if (section !== this.props.match.params.section) {
+      this.updateArticles(section)
+    }
   }
 
  render() {

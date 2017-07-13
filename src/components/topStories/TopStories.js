@@ -4,12 +4,11 @@ import Headline from './Headline'
 import MinorHeadline from './MinorHeadline'
 
 
-
  class TopStories extends Component {
-  render() {
-   
-   const {container, h1, ul } = style
 
+  render() {
+
+   const {container, h1, ul } = style
    return (
     <div style={container}>
       

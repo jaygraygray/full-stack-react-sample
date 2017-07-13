@@ -10,11 +10,12 @@ constructor() {
 }
 
 
-componentWillReceiveProps(nextProps) {
- if (this.props.story === undefined) {
+ componentWillReceiveProps(nextProps) {
+ if (this.props.story !== nextProps.story) {
   this.setState(nextProps.story)
  }
 }
+
  render() {
 
  const { container, info, h1, p, content, ul, li } = style

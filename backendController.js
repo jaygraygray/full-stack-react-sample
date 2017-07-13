@@ -8,7 +8,9 @@ module.exports = {
     url: `https://api.nytimes.com/svc/topstories/v2/${request.params.section}.json`,
     qs: { 'api-key': CONFIG.apiKey },
     }, (req, res) => { 
+    
       let data = JSON.parse(res.body)
+     console.log(data)
       let results = data.results.map( (data) => {
         return {
           abstract: data.abstract,

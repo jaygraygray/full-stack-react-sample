@@ -16,7 +16,7 @@ class App extends Component {
         
         <div>
           <Switch>
-            <Route path="/search/:query" component={SearchResults} /> 
+            <Route path="/search/:query/:page" component={SearchResults} /> 
             <Route exact path="/" component={Home} />
             <Route path="/:section" component={Home} />
             {/* <Route exact path="/article/:title" component={Article} />*/}

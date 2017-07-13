@@ -26,14 +26,15 @@ module.exports = {
   },
 
   search: (request, response) => {
+    console.log(request.params)
     makeHTTPRequest({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
         'api-key': CONFIG.apiKey,
-        'q': `"${request.params.item}"`
+        'q': `"${request.params.item}"`,
+        'page': request.params.page
       }
     }, (NYTreq, NYTres) => {
-    
       let data = JSON.parse(NYTres.body)
       
       let results = data.response.docs.map( (data) => {

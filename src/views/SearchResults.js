@@ -13,7 +13,8 @@ class SearchResults extends Component {
  }
 
  componentDidMount() {
-  axios.get(`http://localhost:9998/search/${this.props.match.params.query}`)
+  let { query, page } = this.props.match.params
+  axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
          searchResults: r.data
@@ -23,14 +24,17 @@ class SearchResults extends Component {
  }
  
  render() {
-  console.log(this.state.searchResults)
   const results = this.state.searchResults.map( (data, i) => {
    let date = moment(data.date).format('h:mm a')
+   let image = null
+   data.imgData ?
+    image = `https://static01.nyt.com/${data.imgData.url}` :
+    image = 'https://vignette1.wikia.nocookie.net/bokunoheroacademia/images/d/d5/NoPicAvailable.png/revision/latest?cb=20160326222204'
    return (
     
     <SearchResultArticle
      key={i}
-     image={data.imgData}
+     image={image}
      title={data.headline.main}
      body={data.snippet}
      date={moment(data.date).format('h:mm a')}
@@ -41,11 +45,15 @@ class SearchResults extends Component {
 
   console.log(this.props)
   return (
-   <div>
+   <div style={style.container}>
     {this.state.searchResults && results }
    </div>
   );
  }
 }
-
+const style = {
+ container : {
+  marginTop: '68px',
+ }
+}
 export default SearchResults;

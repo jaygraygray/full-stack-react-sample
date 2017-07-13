@@ -19,10 +19,6 @@ class Article extends Component {
  }
 }
 
-Article.propTypes = {
-
-};
-
 const style = {
  container : {
   width: '70%',

@@ -41,7 +41,5 @@ const style = {
  }
 
 }
-// 3a434a -- search box
-// c1c7d4 -- top story BG
-// 009bde -- nav item border hover/active
+
 export default Header;

@@ -29,7 +29,6 @@ class MinorHeadline extends Component {
 }
 const style = {
  container : {
-  width: '39%',
   height: '165px',
   padding: '20px',
   marginTop: '18px',

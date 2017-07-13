@@ -47,7 +47,6 @@ const style = {
  container : {
   height: '350px',
   margin: 'auto',
-  width: '59%',
   border: '1px solid #c1c7d4'
  },
 

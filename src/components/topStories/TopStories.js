@@ -15,7 +15,7 @@ import MinorHeadline from './MinorHeadline'
       
      <Headline story={this.props.stories[0]}/>
      
-     <div style={{ display: 'block' }}>
+     <div>
       <MinorHeadline story={this.props.stories[1]}/>
       <MinorHeadline story={this.props.stories[2]}/>
      </div>
@@ -28,6 +28,8 @@ import MinorHeadline from './MinorHeadline'
 
  const style = {
   container : {
+   width: '73%',
+   margin: 'auto',
    height: '420px',
    padding: '18px',
    display: 'flex',

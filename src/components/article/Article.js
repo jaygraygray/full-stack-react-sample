@@ -25,9 +25,10 @@ Article.propTypes = {
 
 const style = {
  container : {
-  width: '712px',
+  width: '70%',
   minHeight: '142px',
-  margin: '24px',
+  margin: 'auto',
+  marginTop: '36px',
   borderStyle: 'solid',
   borderWidth: '1px',
   borderColor: '#cccccc',

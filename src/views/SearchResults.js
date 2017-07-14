@@ -119,3 +119,4 @@ const style = {
   }
 }
 export default withRouter(SearchResults);
+

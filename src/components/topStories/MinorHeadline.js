@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import moment from 'moment'
 
+import { Link } from 'react-router-dom'
+
+
 class MinorHeadline extends Component {
  constructor() {
   super()
@@ -15,9 +18,11 @@ class MinorHeadline extends Component {
 
  render() {
   const { container, h1, author, date, ul, li } = style
-  const { title, byline, datePublished} = this.state
+  const { title, byline, datePublished, url} = this.state
+
   return (
    <div style={container}>
+
     <h1 style={h1}> {title} </h1>
     <ul style={ul}>
      <li style={li}><p style={author}> {byline} </p></li>

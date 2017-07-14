@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom'
+
 class SearchResultArticle extends Component {
  render() {
   const { container, articleTitle, articleBody, img } = style
   const { image, title, body, date, url } = this.props
+  console.log(url)
   return (
    
    <div style={container}>

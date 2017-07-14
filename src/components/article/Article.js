@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom'
+
 class Article extends Component {
  render() {
-  const { container, img, content, bodyText, authorText, dateText, p } = style
-  const { image, title, body, author, date, url } = this.props
-
+  let { container, img, content, bodyText, authorText, dateText, p } = style
+  let { image, title, body, author, date, url } = this.props
+  let formatURL = url.replace(/\//g, '|')
   return (
    <div style={container}>
+    <Link to={`article/${formatURL}`}> VIEW </Link>
     <div style={img}> <img src={image && image.url} /> </div>
     <div style={content}>
-     <h2>{title}</h2>
+   <h2>{title}</h2>
      <p style={p}> <span style={bodyText}> {body} </span></p>
      <p style={p}> <span style={authorText}> {author} </span>  | <span style={dateText}> {date}</span></p>
     </div>

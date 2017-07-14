@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import Header from './components/header/Header'
 import Home from './views/Home'
-// import Article from './views/Article'
+import Articles from './views/Articles'
 import SearchResults from './views/SearchResults'
 
 import { Switch, Route } from 'react-router-dom'
@@ -17,9 +17,9 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/search/:query/:page" component={SearchResults} /> 
+            <Route path="/article/:url" component={Articles} />
             <Route exact path="/" component={Home} />
             <Route path="/:section" component={Home} />
-            {/* <Route exact path="/article/:title" component={Article} />*/}
             
           </Switch>
         </div>

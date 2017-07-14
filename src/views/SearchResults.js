@@ -8,19 +8,26 @@ import { withRouter } from 'react-router-dom'
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
 class SearchResults extends Component {
- constructor() {
-  super()
+ constructor(props) {
+  super(props)
   this.state = {
-    searchResults: []
+    searchResults: [],
+    currentPage: this.props.match.params.page
   }
   this.NextPage = this.NextPage.bind(this)
   this.PrevPage = this.PrevPage.bind(this)
+
  }
 
- updateResults() {
+ componentDidMount() {
+  this.updateResults(this.props.match.params.page)
+ }
+
+
+ updateResults(page) {
   let { query } = this.props.match.params
-  let page = parseInt(this.props.match.params.page)
-  
+  //let page = parseInt(this.state.currentPage)
+  console.log('TO API: ', page)
   axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
@@ -29,31 +36,26 @@ class SearchResults extends Component {
       })
  }
 
- componentDidMount() {
-  console.log(this.state.currentPage)
-  this.updateResults()
- }
-
-componentWillReceiveProps(nextProps) {
- if (this.props.location.pathname !== nextProps.location.pathname) {
-   this.updateResults()
- }
-}
- 
  NextPage() {
    let page = parseInt(this.props.match.params.page)
    page++
-  return this.props.history.push(`/search/${this.props.match.params.query}/${page}`)
+   this.props.history.push(`/search/${this.props.match.params.query}/${page}`) 
+    this.updateResults(page)
  }
 
  PrevPage() {
-   let page = parseInt(this.props.match.params.page)
+    let page = parseInt(this.props.match.params.page)
    page--
-  return this.props.history.push(`/search/${this.props.match.params.query}/${page}`)
+   this.props.history.push(`/search/${this.props.match.params.query}/${this.props.match.params.page}`)
+   this.updateResults(page)
  }
 
+
+ 
+
+
  render() {
-  console.log(this.props)
+
   const results = this.state.searchResults.map( (data, i) => {
    let date = moment(data.date).format('h:mm a')
    let image = null
@@ -73,17 +75,17 @@ componentWillReceiveProps(nextProps) {
    )})
 
 
-  console.log(this.props)
+   const { container, breadCrumb, nextPage, prevPage, ul, li } = style
   return (
-   <div style={style.container}>
+   <div style={container}>
 
-   <div style={style.breadCrumb}>
+   <div style={breadCrumb}>
     <Link to="/">Home</Link> > Search 
    </div>
-   <div>
-    <div onClick={this.NextPage}>Next Page</div>
-    <div onClick={this.PrevPage}>Previous Page</div>
-   </div>
+   <ul style={ul}>
+    <li style={li}><div onClick={this.PrevPage}> &lt; Previous Page </div></li>
+    <li style={li}><div onClick={this.NextPage}>Next Page &gt; </div></li>
+   </ul>
     {this.state.searchResults && results }
 
    </div>
@@ -98,6 +100,22 @@ const style = {
   fontFamily: 'Arial',
   margin: '109px 0 30px 176px',
   fontSize: '1rem',
- }
+ },
+ page: {
+   fontFamily: 'Arial',
+   fontWeight: 'bold',
+ },
+ ul: {
+   width: '100%',
+   padding: '0',
+   margin: 'auto',
+   marginBottom: '24px',
+   display: 'flex',
+   listStyle: 'none',
+ },
+  li: {
+    width: '50%',
+    textAlign: 'center',
+  }
 }
 export default withRouter(SearchResults);

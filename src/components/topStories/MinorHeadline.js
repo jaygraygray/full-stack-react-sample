@@ -19,11 +19,14 @@ class MinorHeadline extends Component {
  render() {
   const { container, h1, author, date, ul, li } = style
   const { title, byline, datePublished, url} = this.state
-
+    let formatURL = null
+ url ?
+ formatURL = url.replace(/\//g, '|') :
+ formatURL = null
   return (
    <div style={container}>
 
-    <h1 style={h1}> {title} </h1>
+    <Link to={`article/${formatURL}`}><h1 style={h1}> {title} </h1></Link>
     <ul style={ul}>
      <li style={li}><p style={author}> {byline} </p></li>
      <li style={li}><p style={date}> {moment(datePublished).format('h:mm a')} </p></li>

@@ -6,6 +6,7 @@ class SearchResultArticle extends Component {
  render() {
   const { container, articleTitle, articleBody, img } = style
   const { image, title, body, date, url } = this.props
+  let formatURL = url.replace(/\//g, '|')
   console.log(url)
   return (
    
@@ -13,7 +14,7 @@ class SearchResultArticle extends Component {
       
       <img src={image} style={img} />
 
-    <h1 style={articleTitle}>{title}</h1>
+    <Link to={`/article/${formatURL}`}><h1 style={articleTitle}>{title}</h1></Link>
     <p style={articleBody}> {body} </p>
    </div>
   );

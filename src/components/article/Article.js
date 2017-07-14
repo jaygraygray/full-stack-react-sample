@@ -10,10 +10,9 @@ class Article extends Component {
   let formatURL = url.replace(/\//g, '|')
   return (
    <div style={container}>
-    <Link to={`article/${formatURL}`}> VIEW </Link>
     <div style={img}> <img src={image && image.url} /> </div>
     <div style={content}>
-   <h2>{title}</h2>
+    <Link to={`article/${formatURL}`}><h2>{title}</h2></Link>
      <p style={p}> <span style={bodyText}> {body} </span></p>
      <p style={p}> <span style={authorText}> {author} </span>  | <span style={dateText}> {date}</span></p>
     </div>

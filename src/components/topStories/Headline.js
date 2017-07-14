@@ -22,6 +22,11 @@ constructor() {
 
  const { container, info, h1, p, content, ul, li } = style
  const { title, byline, date, abstract, imgData, url } = this.state
+ console.log(this.state)
+  let formatURL = null
+ url ?
+ formatURL = url.replace(/\//g, '|') :
+ formatURL = null
  return (
   
   <div style={container}>
@@ -29,7 +34,7 @@ constructor() {
    <div style={info}>
     <ul style={ul}>
      <li>
-       <h1 style={h1}>{title}</h1>
+       <Link to={`article/${formatURL}`}><h1 style={h1}>{title}</h1></Link>
        <p style={p}>{byline}</p>
        <p style={p}>{moment(date).format('h:mm a')}</p>
       </li>

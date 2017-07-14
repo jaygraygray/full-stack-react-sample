@@ -8,40 +8,37 @@ import { withRouter } from 'react-router-dom'
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
 class SearchResults extends Component {
- constructor() {
-  super()
+ constructor(props) {
+  super(props)
   this.state = {
    searchResults : [],
-   currentPage: null,
-   currentQuery: null
+   currentPage: this.props.match.params.page,
+   currentQuery: this.props.match.params.query
   },
   this.NextPage = this.NextPage.bind(this)
   this.PrevPage = this.PrevPage.bind(this)
  }
 
- componentDidMount() {
+ updateResults() {
   const { query, page } = this.props.match.params
   axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
          searchResults: r.data,
-         currentPage: page,
+         currentPage: parseInt(page),
          currentQuery: query
         })
       })
  }
 
+ componentDidMount() {
+  console.log(this.state.currentPage)
+  this.updateResults()
+ }
+
 componentWillReceiveProps(nextProps) {
  if (this.props.location.pathname !== nextProps.location.pathname) {
-   const { query, page } = this.props.match.params
-  axios.get(`http://localhost:9998/search/${query}/${page}`)
-        .then( r => {
-        this.setState({
-         searchResults: r.data,
-         currentPage: page,
-         currentQuery: query
-        })
-      }) 
+   this.updateResults()
  }
 }
  

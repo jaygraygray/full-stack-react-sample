@@ -15,9 +15,8 @@ class Search extends Component {
   search(e) {
     e.preventDefault()
     this.props.history.push('/search/' + this.state.searchTerm + '/0')
-    console.log(this.state.searchTerm)
-  }
 
+  }
 
 
   onSearchChange(e) {

@@ -8,25 +8,23 @@ import { withRouter } from 'react-router-dom'
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
 class SearchResults extends Component {
- constructor(props) {
-  super(props)
+ constructor() {
+  super()
   this.state = {
-   searchResults : [],
-   currentPage: this.props.match.params.page,
-   currentQuery: this.props.match.params.query
-  },
+    searchResults: []
+  }
   this.NextPage = this.NextPage.bind(this)
   this.PrevPage = this.PrevPage.bind(this)
  }
 
  updateResults() {
-  const { query, page } = this.props.match.params
+  let { query } = this.props.match.params
+  let page = parseInt(this.props.match.params.page)
+  
   axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
          searchResults: r.data,
-         currentPage: parseInt(page),
-         currentQuery: query
         })
       })
  }
@@ -43,11 +41,15 @@ componentWillReceiveProps(nextProps) {
 }
  
  NextPage() {
-  return this.props.history.push(`/search/${this.state.currentQuery}/${this.state.currentPage++}`)
+   let page = parseInt(this.props.match.params.page)
+   page++
+  return this.props.history.push(`/search/${this.props.match.params.query}/${page}`)
  }
 
  PrevPage() {
-  return this.props.history.push(`/search/${this.state.currentQuery}/${this.state.currentPage--}`)
+   let page = parseInt(this.props.match.params.page)
+   page--
+  return this.props.history.push(`/search/${this.props.match.params.query}/${page}`)
  }
 
  render() {

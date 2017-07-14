@@ -7,7 +7,7 @@ class SearchResultArticle extends Component {
   return (
    
    <div style={container}>
-
+      
       <img src={image} style={img} />
 
     <h1 style={articleTitle}>{title}</h1>

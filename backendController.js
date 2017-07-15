@@ -10,6 +10,7 @@ module.exports = {
     }, (NYTreq, NYTres) => { 
     
       let data = JSON.parse(NYTres.body)
+      //response.send( data ) 
       let results = data.results.map( (data) => {
         // return only necessary data
         return {

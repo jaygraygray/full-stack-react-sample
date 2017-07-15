@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
+import { StyleSheet, css } from 'aphrodite'
 
 import SearchResultArticle from '../components/article/SearchResultArticle'
 
@@ -26,8 +27,6 @@ class SearchResults extends Component {
 
  updateResults(page) {
   let { query } = this.props.match.params
-  //let page = parseInt(this.state.currentPage)
-  console.log('TO API: ', page)
   axios.get(`http://localhost:9998/search/${query}/${page}`)
         .then( r => {
         this.setState({
@@ -77,14 +76,14 @@ class SearchResults extends Component {
 
    const { container, breadCrumb, nextPage, prevPage, ul, li } = style
   return (
-   <div style={container}>
+   <div className={css(container)}>
 
-   <div style={breadCrumb}>
-    <Link to="/">Home</Link> > Search 
+   <div className={css(breadCrumb)}>
+    <Link to="/home">Home</Link> > Search 
    </div>
-   <ul style={ul}>
-    <li style={li}><div onClick={this.PrevPage}> &lt; Previous Page </div></li>
-    <li style={li}><div onClick={this.NextPage}>Next Page &gt; </div></li>
+   <ul className={css(ul)}>
+    <li className={css(li)} onClick={this.PrevPage}><div> &lt; Previous Page </div></li>
+    <li className={css(li)} onClick={this.NextPage}><div>Next Page &gt; </div></li>
    </ul>
     {this.state.searchResults && results }
 
@@ -92,7 +91,7 @@ class SearchResults extends Component {
   );
  }
 }
-const style = {
+const style = StyleSheet.create({
  container : {
   marginTop: '68px',
  },
@@ -114,9 +113,25 @@ const style = {
    listStyle: 'none',
  },
   li: {
-    width: '50%',
+    fontFamily: 'Arial',
+    fontWeight: 'bold',
+    fontSize: '.8rem',
+    background: '#c3c3c3',
+    width: '20%',
+    margin: 'auto',
+    padding: '18px 32px 18px 32px',
+    borderStyle: 'solid',
+    borderWidth: '0 0 8px 0px',
+    borderColor: '#ababab',
     textAlign: 'center',
+    transition: 'all .2s',
+    ":hover": {
+      cursor: 'pointer',
+      borderColor: '#4d4d4d',
+      transition: 'all .2s',
+      background: '#b3b3cc',
+    }
   }
-}
+})
 export default withRouter(SearchResults);
 

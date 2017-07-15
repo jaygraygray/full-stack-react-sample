@@ -8,7 +8,7 @@ import MinorHeadline from './MinorHeadline'
 
   render() {
 
-   const {container, h1, ul } = style
+   const { container, h1, ul } = style
    return (
     <div style={container}>
       

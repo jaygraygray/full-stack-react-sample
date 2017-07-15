@@ -4,19 +4,31 @@ import { Link } from 'react-router-dom'
 import { StyleSheet, css } from 'aphrodite'
 
 class SearchResultArticle extends Component {
+
  render() {
-  const { container, articleTitle, articleBody, img } = style
+
+  const { container, articleTitle, articleBody, img, content, imgContainer} = style
   const { image, title, body, date, url } = this.props
   let formatURL = url.replace(/\//g, '|')
-  console.log(url)
+  
+  
   return (
    
    <div className={css(container)}>
-      
-      <img src={image} className={css(img)} />
+      <div className={css(imgContainer)}>
+    <img src={image} className={css(img)} />
+        </div>
 
-    <Link to={`/article/${formatURL}`}><h1 className={css(articleTitle)}>{title}</h1></Link>
-    <p className={css(articleBody)}> {body} </p>
+
+   <div className={css(content)}>
+        <Link to={`/article/${formatURL}`}>
+            <h1 className={css(articleTitle)}>{title}</h1>
+        </Link>
+
+        <p className={css(articleBody)}> {body} </p>
+    </div>
+        
+
    </div>
   );
  }
@@ -33,6 +45,8 @@ const style = StyleSheet.create({
   display: 'flex',
   flexDirection: 'left',
   justifyContent: 'space-around',
+  fontFamily: 'Arial',
+  textDecoration: 'none',
   padding: '25px 50px 25px 50px',
   transition: 'all .1s',
   ":hover": {
@@ -50,11 +64,18 @@ const style = StyleSheet.create({
   color: '#242f36',
   marginTop: '24px',
  },
+ imgContainer: {
+     width: '20%',
+ },
  img: {
   float: 'left',
   width: '190px',
   height: '126px',
-  
- }
+ }, 
+  content: {
+      width: '60%',
+  padding: '0 20px 0 20px',
+  marginTop: '12px'
+ },
 })
 export default SearchResultArticle;

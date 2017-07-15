@@ -9,7 +9,7 @@ class HeaderNav extends Component {
 
 render() {
 
-  const { container, ul, li, liActive } = style
+ const { container, ul, li, liActive } = style
   
  return (
   <div className={ css(container) }>

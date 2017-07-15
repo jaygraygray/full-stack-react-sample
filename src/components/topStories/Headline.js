@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import moment from 'moment'
+import { StyleSheet, css } from 'aphrodite'
 
 import { Link } from 'react-router-dom'
+
 
 class Headline extends Component {
 
@@ -29,51 +31,62 @@ constructor() {
  formatURL = null
  return (
   
-  <div style={container}>
+  <div className={css(container)}>
  
-   <div style={info}>
-    <ul style={ul}>
+   <div className={css(info)}>
+    <ul className={css(ul)}>
      <li>
-       <Link to={`article/${formatURL}`}><h1 style={h1}>{title}</h1></Link>
-       <p style={p}>{byline}</p>
-       <p style={p}>{moment(date).format('h:mm a')}</p>
+       <Link to={`article/${formatURL}`}><h1 className={css(h1)}>{title}</h1></Link>
+       <p className={css(p)}>{byline}</p>
+       <p className={css(p)}>{moment(date).format('h:mm a')}</p>
       </li>
      <li>
       <img src={imgData && imgData[0].url}/>
      </li>
     </ul>
-
    </div>
-   <div style={content}>
+   <div className={css(content)}>
     {abstract}
    </div>
   </div>
  );
 };
 }
-const style = {
+const style = StyleSheet.create({
  container : {
   height: '350px',
   margin: 'auto',
-  border: '1px solid #c1c7d4'
+  border: '1px solid #c1c7d4',
+  boxShadow: '2px 2px 16px #adadad',
+  transition: 'all .2s',
+  ":hover": {
+    boxShadow: '2px 2px 6px #adadad',
+    transition: 'all .2s'
+  },
  },
 
  info : {
   height: '200px',
   background: '#c1c7d4',
-  padding: '18px'
+  padding: '18px',
+  transition: 'all .2s',
+  ":hover": {
+    background: '#d3dcef',
+    transition: 'all .2s'
+  }
  },
 
  h1 : {
   color: '#242f36',
   fontSize: '1.5rem',
-  margin: '0'
+  margin: '0',
  },
 
  p: {
-  marginTop: '18px',
+  marginTop: '24px',
   color: "#fff",
-  fontSize: ".8rem"
+  fontSize: ".8rem",
+  textShadow: '-1px 1px 1px #616161'
  },
  content: {
   padding: '24px',
@@ -87,5 +100,5 @@ const style = {
   margin: '0',
   padding: '0'
  }
-}
+})
 export default Headline;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import moment from 'moment'
+import { StyleSheet, css } from 'aphrodite'
 
 import { Link } from 'react-router-dom'
 
@@ -24,24 +25,30 @@ class MinorHeadline extends Component {
  formatURL = url.replace(/\//g, '|') :
  formatURL = null
   return (
-   <div style={container}>
+   <div className={css(container)}>
 
-    <Link to={`article/${formatURL}`}><h1 style={h1}> {title} </h1></Link>
-    <ul style={ul}>
-     <li style={li}><p style={author}> {byline} </p></li>
-     <li style={li}><p style={date}> {moment(datePublished).format('h:mm a')} </p></li>
+    <Link to={`article/${formatURL}`}><h1 className={css(h1)}> {title} </h1></Link>
+    <ul className={css(ul)}>
+     <li className={css(li)}><p className={css(author)}> {byline} </p></li>
+     <li className={css(li)}><p className={css(date)}> {moment(datePublished).format('h:mm a')} </p></li>
     </ul>
    </div>
   );
  }
 }
-const style = {
+const style = StyleSheet.create({
  container : {
   height: '165px',
   padding: '20px',
   marginTop: '18px',
   marginLeft: '24px',
-  border: '1px solid #c1c7d4'
+  border: '1px solid #eaf1ff',
+  transition: 'all .2s',
+  ":hover": {
+    background: '#d3dcef',
+    transition: 'all .2s',
+    border: '1px solid #7d8696'
+  }
  },
  h1 : {
   color: '#242f36',
@@ -57,10 +64,12 @@ const style = {
   color: '#0000A0',
  },
  ul: {
-  listStyle: 'none'
+  listStyle: 'none',
+  marginTop: '26px',
  },
  li : {
-  marginTop: '6px'
+  marginTop: '6px',
+  textAlign: 'right'
  }
-}
+})
 export default MinorHeadline;

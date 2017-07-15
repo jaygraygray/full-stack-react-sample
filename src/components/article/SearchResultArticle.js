@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom'
+import { StyleSheet, css } from 'aphrodite'
 
 class SearchResultArticle extends Component {
  render() {
@@ -10,27 +11,34 @@ class SearchResultArticle extends Component {
   console.log(url)
   return (
    
-   <div style={container}>
+   <div className={css(container)}>
       
-      <img src={image} style={img} />
+      <img src={image} className={css(img)} />
 
-    <Link to={`/article/${formatURL}`}><h1 style={articleTitle}>{title}</h1></Link>
-    <p style={articleBody}> {body} </p>
+    <Link to={`/article/${formatURL}`}><h1 className={css(articleTitle)}>{title}</h1></Link>
+    <p className={css(articleBody)}> {body} </p>
    </div>
   );
  }
 }
 
-const style = {
- container: {
+const style = StyleSheet.create({
+ container : {
+  width: '60%',
+  minHeight: '142px',
   margin: 'auto',
-  width: '70%',
-  height: '160px',
   borderStyle: 'solid',
   borderWidth: '1px 0 0 0',
   borderColor: '#cccccc',
-  padding: '23px',
-
+  display: 'flex',
+  flexDirection: 'left',
+  justifyContent: 'space-around',
+  padding: '25px 50px 25px 50px',
+  transition: 'all .1s',
+  ":hover": {
+      boxShadow: '0px 2px 20px #cacaca inset',
+      transition: 'all .1s',
+  }
  },
  articleTitle: {
   color: '#009bde',
@@ -48,5 +56,5 @@ const style = {
   height: '126px',
   
  }
-}
+})
 export default SearchResultArticle;

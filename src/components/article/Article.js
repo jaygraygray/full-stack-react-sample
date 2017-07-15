@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { StyleSheet, css } from 'aphrodite'
+
 import { Link } from 'react-router-dom'
 
 class Article extends Component {
@@ -9,34 +11,37 @@ class Article extends Component {
   let { image, title, body, author, date, url } = this.props
   let formatURL = url.replace(/\//g, '|')
   return (
-   <div style={container}>
-    <div style={img}> <img src={image && image.url} /> </div>
-    <div style={content}>
+   <div className={css(container)}>
+    <div className={css(img)}> <img src={image && image.url} /> </div>
+    <div className={css(content)}>
     <Link to={`article/${formatURL}`}><h2>{title}</h2></Link>
-     <p style={p}> <span style={bodyText}> {body} </span></p>
-     <p style={p}> <span style={authorText}> {author} </span>  | <span style={dateText}> {date}</span></p>
+     <p className={css(p)}> <span className={css(bodyText)}> {body} </span></p>
+     <p className={css(p)}> <span className={css(authorText)}> {author} </span>  | <span className={css(dateText)}> {date}</span></p>
     </div>
    </div>
   );
  }
 }
 
-const style = {
+const style = StyleSheet.create({
  container : {
-  width: '70%',
+  width: '60%',
   minHeight: '142px',
   margin: 'auto',
-  marginTop: '36px',
   borderStyle: 'solid',
-  borderWidth: '1px',
+  borderWidth: '1px 0 0 0',
   borderColor: '#cccccc',
   display: 'flex',
   flexDirection: 'left',
-  justifyContent: 'space-around'
+  justifyContent: 'space-around',
+  padding: '25px 50px 25px 50px',
+  transition: 'all .1s',
+  ":hover": {
+      boxShadow: '0px 2px 20px #cacaca inset',
+      transition: 'all .1s',
+  }
  },
  img : {
-
-  //float: 'left',
   margin: 'auto',
   padding: '0',
   height: '140px',
@@ -53,6 +58,6 @@ const style = {
  bodyText: { color: '#1a1a1a' },
  authorText: { color: '#A9A9A9' },
  dateText: { color: '#0000A0'},
-}
+})
 
 export default Article;

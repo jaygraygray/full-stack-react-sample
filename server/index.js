@@ -1,13 +1,14 @@
 const app = require('express')(),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      port = 9998,
+      port = process.env.PORT,
       ctrl = require('./backendController')
       CONFIG = require('./config')
 
 // Apply middleware
+app.use(expres.static(__dirname + "/public"))
 app.use( bodyParser.json() )
-app.use( cors({ origin: 'http://localhost:3000' }) )
+app.use( cors() )
 
 
 // Sent Endpoints

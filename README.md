@@ -2,8 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Full stack React/Node app, utilizing NYTimes APIs for a barebones browsing, searching, and reading experience.
 
-WebPack Dev server will run on port 3001.
-Node server will run on 9998.
+WebPack Dev server will run on port 3000.
+Node server will run on port 9998.
+
+Add the NYTimes API key to the `server/config.js` file before launching.
 
 From the root directory, run `npm i` to install React dependencies.
 Run `nodemon` or a similar command to launch the Node server from the `/server` directory.

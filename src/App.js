@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-
 import Header from './components/header/Header'
 import Home from './views/Home'
 import Articles from './views/Articles'
 import SearchResults from './views/SearchResults'
-
 import { Switch, Route } from 'react-router-dom'
+
 class App extends Component {
 
   render() {
@@ -20,7 +18,6 @@ class App extends Component {
             <Route path="/article/:url" component={Articles} />
             <Route exact path="/" component={Home} />
             <Route path="/:section" component={Home} />
-            
           </Switch>
         </div>
       </div>

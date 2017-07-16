@@ -6,7 +6,7 @@ const app = require('express')(),
       CONFIG = require('./config')
 
 // Apply middleware
-app.use(express.static(__dirname + "/public", "index.html"))
+app.use(express.static(__dirname + "/public"))
 app.use( bodyParser.json() )
 app.use( cors() )
 

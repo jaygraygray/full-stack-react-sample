@@ -2,23 +2,27 @@ import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom'
 
+import  Search  from '../components/header/Search'
+
 class Articles extends Component {
  render() {
 
-  let html = document.getElementsByTagName("HTML")[0]
-  html.style.overflow = 'hidden'
 
-  const { container, breadCrumb, content, contentContainer, home } = style
+  const { container, breadCrumb, content, contentContainer, home, nav } = style
   let finalURL =  this.props.match.params.url.replace(/[|]/g, "/")
 
   return (
    <div style={container}>
-
+     <div style={nav}>
+      <Link to="/home" style={home}><div>Home</div></Link>
+      <Search />
+     </div>
+    
     <div>
       {this.props.match.params && <iframe src={finalURL} style={content} /> }
     </div>
 
-    <Link to="/home"><div style={home}>Home</div></Link>
+    
    </div>
   );
  }
@@ -40,21 +44,34 @@ const style = {
   position: 'absolute',
   top: '0',
   left:'0',
-  width: '99vw',
+  width: '100vw',
   height: '100vh'
  },
- home: {
-   background: '#242f36',
-   color: '#fff',
+nav: {
    position: 'fixed',
    bottom: '76px',
    right: '93px',
    borderRadius: '18px',
-   padding: '32px 45px 32px 45px',
+   width: '256px',
+   height: '213px',
    zIndex: '2',
+   background: '#242f36',
+   textAlign: 'center',
+   display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-around'
+},
+ home: {
+   color: '#fff',
    fontFamily: 'Arial',
    fontWeight: 'bold',
-   fontSize: '2rem'
+   fontSize: '2rem',
+   borderStyle: 'solid',
+   borderWidth: '0 0 1px 0',
+   color: '#fff',
+   textDecoration: 'none',
+   padding: '0 26px 33px 26px',
  }
 }
 export default Articles;

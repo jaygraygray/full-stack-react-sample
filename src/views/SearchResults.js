@@ -24,6 +24,11 @@ class SearchResults extends Component {
   this.updateResults(this.props.match.params.page)
  }
 
+  componentWillReceiveProps(nextProps) {
+  if (this.props.match.params !== nextProps.match.params) {
+    return this.updateResults(nextProps.match.params.page)
+  }
+}
 
  updateResults(page) {
   let { query } = this.props.match.params
@@ -32,6 +37,7 @@ class SearchResults extends Component {
         this.setState({
          searchResults: r.data,
         })
+        console.log('updateResults fired')
       })
  }
 
@@ -48,10 +54,6 @@ class SearchResults extends Component {
    this.props.history.push(`/search/${this.props.match.params.query}/${this.props.match.params.page}`)
    this.updateResults(page)
  }
-
-
- 
-
 
  render() {
 

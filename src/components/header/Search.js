@@ -15,9 +15,7 @@ class Search extends Component {
   search(e) {
     e.preventDefault()
     this.props.history.push('/search/' + this.state.searchTerm + '/0')
-
   }
-
 
   onSearchChange(e) {
     this.setState({
@@ -26,6 +24,7 @@ class Search extends Component {
     
   }
  render() {
+   
   const { input, searchIcon, ul, li } = style
   return (
     <form onSubmit={this.search}>

@@ -32,7 +32,7 @@ class SearchResults extends Component {
 
   updateResults(page) {
     let { query } = this.props.match.params
-    axios.get(`http://localhost:9998/search/${query}/${page}`)
+    axios.get(`/search/${query}/${page}`)
     .then( r => {
       this.setState({
         searchResults: r.data,

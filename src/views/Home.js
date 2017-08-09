@@ -17,7 +17,7 @@ class Home extends Component {
 
   updateArticles(section) {
     if (section == 'auth') {
-      axios.get(`http://localhost:9998/view/home`)
+      axios.get(`/view/home`)
       .then( r => {
         this.setState({
           topStories: r.data.slice(0,3),
@@ -25,7 +25,7 @@ class Home extends Component {
         })
       })
     } else {
-      axios.get(`http://localhost:9998/view/${section}`)
+      axios.get(`/view/${section}`)
       .then( r => {
         this.setState({
           topStories: r.data.slice(0,3),

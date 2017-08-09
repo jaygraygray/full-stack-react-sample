@@ -10,9 +10,11 @@ class Header extends Component {
     this.state = {
       userData: null
     }
+
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
+  handleClick() {
     axios.get('/auth/me').then( (r) => {
       console.log(r)
       this.setState({
@@ -31,7 +33,8 @@ class Header extends Component {
       <div style={ aligner }>
         <h1 style={ h1 }>The Times</h1>
         <Search />
-        <a href="http://localhost:9998/auth"><h3>Login</h3></a>
+        <button onClick={this.handleClick}>Check Logged In</button>
+        <a href="http://localhost:9999/auth"><h3>Login</h3></a>
       </div>
 
       <HeaderNav />

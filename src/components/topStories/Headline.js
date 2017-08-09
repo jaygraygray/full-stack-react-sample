@@ -22,12 +22,7 @@ class Headline extends Component {
     const { container, info, h1, p, content, ul, li } = style
     const { title, byline, date, abstract, imgData, url } = this.state
   
-    // formatting URL so it can be passed as as a param
-    let formatURL = null
-    url ?
-    formatURL = url.replace(/\//g, '|') :
-    formatURL = null
-    
+
     return (
 
       <div className={ css(container) }>
@@ -37,7 +32,7 @@ class Headline extends Component {
           <ul className={ css(ul) }>
             
             <li>
-              <Link to={ `article/${formatURL}` }><h1 className={ css(h1) }> {title} </h1></Link>
+              <a href={url}><h1 className={ css(h1) }> {title} </h1></a>
               <p className={ css(p) }> {byline} </p>
               <p className={ css(p) }> {moment(date).format('h:mm a')} </p>
             </li>

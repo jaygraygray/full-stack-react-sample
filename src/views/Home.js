@@ -16,13 +16,23 @@ class Home extends Component {
   }
 
   updateArticles(section) {
-    axios.get(`http://localhost:9998/view/${section}`)
-    .then( r => {
-      this.setState({
-        topStories: r.data.slice(0,3),
-        stories: r.data.slice(4, r.data.length)
+    if (section == 'auth') {
+      axios.get(`http://localhost:9998/view/home`)
+      .then( r => {
+        this.setState({
+          topStories: r.data.slice(0,3),
+          stories: r.data.slice(4, r.data.length)
+        })
       })
-    })
+    } else {
+      axios.get(`http://localhost:9998/view/${section}`)
+      .then( r => {
+        this.setState({
+          topStories: r.data.slice(0,3),
+          stories: r.data.slice(4, r.data.length)
+        })
+      })
+    }
   }
 
   componentDidMount() {

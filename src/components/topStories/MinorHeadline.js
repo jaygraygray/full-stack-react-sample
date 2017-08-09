@@ -21,16 +21,13 @@ class MinorHeadline extends Component {
     const { container, h1, author, date, ul, li } = style
     const { title, byline, datePublished, url} = this.state
   
-    let formatURL = null
-    url ?
-    formatURL = url.replace(/\//g, '|') :
-    formatURL = null
-
       return (
         
         <div className={ css(container) }>
 
-        <Link to={ `article/${formatURL}` }><h1 className={ css(h1) }> {title} </h1></Link>
+        <a href={url}>
+          <h1 className={ css(h1) }> {title} </h1>
+        </a>
 
           <ul className={ css(ul) }>
             <li className={ css(li) }><p className={ css(author) }> {byline} </p></li>

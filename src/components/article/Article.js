@@ -8,7 +8,6 @@ class Article extends Component {
 
     let { container, img, content, bodyText, authorText, dateText, p } = style
     let { image, title, body, author, date, url } = this.props
-    let formatURL = url.replace(/\//g, '|')
 
     return (
         <div className={ css(container) }>
@@ -17,9 +16,9 @@ class Article extends Component {
 
             <div className={ css(content) }>
 
-                <Link to={ `article/${formatURL}` }>
+                <a href={url}>
                     <h2> {title} </h2>
-                </Link>
+                </a>
                 <p className={ css(p) }> <span className={ css(bodyText) }> {body} </span></p>
                 <p className={ css(p) }> <span className={ css(authorText) }> {author} </span>
                   | <span className={ css(dateText) }> {date} </span></p>

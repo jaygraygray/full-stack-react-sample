@@ -19,9 +19,9 @@ class SearchResultArticle extends Component {
 
             <div className={ css(content) }>
 
-                <Link to={ `/article/${formatURL}` }>
+                <a href={url}>
                     <h1 className={ css(articleTitle) }> {title} </h1>
-                </Link>
+                </a>
 
                 <p className={ css(articleBody) }> {body} </p>
             

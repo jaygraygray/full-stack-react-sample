@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import HeaderNav from './HeaderNav'
 import Search from './Search'
+import axios from 'axios'
 
 class Header extends Component {
+
+  constructor(){
+    super()
+    this.state = {
+      userData: null
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/auth/me').then( (r) => {
+      console.log(r)
+      this.setState({
+        userData: r
+      })
+    })
+  }
 
   render() {
 
@@ -14,6 +31,7 @@ class Header extends Component {
       <div style={ aligner }>
         <h1 style={ h1 }>The Times</h1>
         <Search />
+        <a href="http://localhost:9998/auth"><h3>Login</h3></a>
       </div>
 
       <HeaderNav />

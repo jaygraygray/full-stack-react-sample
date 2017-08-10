@@ -3,6 +3,8 @@ import moment from 'moment'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 
+import ArticleTracker from '../ArticleTracker/ArticleTracker'
+
 class Headline extends Component {
 
   constructor() {
@@ -19,16 +21,21 @@ class Headline extends Component {
 
   render() {
 
-    const { container, info, h1, p, content, ul, li } = style
+    const { container, info, h1, p, content, ul, li, article } = style
     const { title, byline, date, abstract, imgData, url } = this.state
   
+    console.log(this.state)
 
     return (
+      
 
       <div className={ css(container) }>
-
+      
         <div className={ css(info) }>
-
+          <div className={ css (article) }>
+            <ArticleTracker/>
+          </div>
+          
           <ul className={ css(ul) }>
             
             <li>
@@ -38,7 +45,7 @@ class Headline extends Component {
             </li>
             
             <li>
-              <img src={ imgData && imgData[0].url } alt="Headline"/>
+               {/* <img src={ imgData && imgData[0].url } alt="Headline"/>  */}
             </li>
           
           </ul>
@@ -48,6 +55,8 @@ class Headline extends Component {
         <div className={ css(content) }>
           {abstract}
         </div>
+
+      
 
       </div>
     );
@@ -60,12 +69,13 @@ const style = StyleSheet.create({
     border: '1px solid #c1c7d4',
     boxShadow: '2px 2px 16px #adadad',
     transition: 'all .2s',
-    ":hover": {
-      boxShadow: '2px 2px 6px #adadad',
-      transition: 'all .2s'
-    },
+      ":hover": {
+        boxShadow: '2px 2px 6px #adadad',
+        transition: 'all .2s',
+      }
   },
   info : {
+    position: 'relative',
     height: '200px',
     background: '#c1c7d4',
     padding: '18px',
@@ -97,6 +107,19 @@ const style = StyleSheet.create({
     listStyle: 'none',
     margin: '0',
     padding: '0'
+  },
+
+  article: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    bottom: '6px',
+    width: '100%',
+    height: '100%',
+    opacity: '0',
+      ":hover": {
+        opacity: '1'
+      }
   }
 })
 export default Headline;

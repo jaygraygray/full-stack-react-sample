@@ -76,7 +76,8 @@ const style = {
     borderStyle: 'none',
     fontSize: '.7rem',
     fontWeight: 'bold',
-    paddingLeft: '8px'
+    paddingLeft: '8px',
+    width: '200px'
   }
 }
 export default withRouter(Search);

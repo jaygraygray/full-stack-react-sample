@@ -4,6 +4,8 @@ import moment from 'moment'
 import Article from '../components/article/Article'
 import TopStories from '../components/topStories/TopStories'
 
+import ArticleTracker from '../components/ArticleTracker/ArticleTracker'
+
 class Home extends Component {
 
   constructor() {
@@ -64,6 +66,9 @@ class Home extends Component {
       let date = moment(data.date).format('h:mm a')
 
       return (
+        <div>
+
+        <ArticleTracker/>
         <Article
         key={i}
         image={data.imgData[1]}
@@ -73,6 +78,7 @@ class Home extends Component {
         date={date}
         url={data.url}
         />
+        </div>
         )
       }
     )

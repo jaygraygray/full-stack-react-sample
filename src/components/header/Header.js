@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HeaderNav from './HeaderNav'
 import Search from './Search'
+import Login from './Login'
 import axios from 'axios'
 
 class Header extends Component {
@@ -8,7 +9,7 @@ class Header extends Component {
   constructor(){
     super()
     this.state = {
-      displayName: null
+      userData: null
     }
 
     //this.handleClick = this.handleClick.bind(this)
@@ -18,28 +19,26 @@ class Header extends Component {
     axios.get('/auth/me').then( (r) => {
       console.log(r)
       this.setState({
-        displayName: r.data.displayName
+        userData: r.data
       })
     })
   }
 
+  
 
   render() {
 
   const { container, aligner, h1 } = style
-    let display 
-
-    console.log(this.state.displayName)
+    
   return (
     <div style={ container }>
 
       <div style={ aligner }>
         <h1 style={ h1 }>The Times</h1>
         <Search />
-    { this.state.displayName ? 
-      display = <a href="http://localhost:9999/auth/logout">Log Out</a> :
-      display = <a href="http://localhost:9999/auth"><h3>Login</h3></a> }
-      
+        <Login user={this.state.userData} />
+
+          
       </div>
 
       <HeaderNav />

@@ -3,6 +3,8 @@ import HeaderNav from './HeaderNav'
 import Search from './Search'
 import Login from './Login'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { action_getUserID } from '../../ducks/reducer'
 
 class Header extends Component {
 
@@ -12,12 +14,13 @@ class Header extends Component {
       userData: null
     }
 
-    //this.handleClick = this.handleClick.bind(this)
+
   }
 
   componentDidMount() {
     axios.get('/auth/me').then( (r) => {
-      console.log(r)
+      this.props.action_getUserID(r.data._json.clientID)
+      console.log(r.data)
       this.setState({
         userData: r.data
       })
@@ -66,4 +69,4 @@ const style = {
     fontSize: '2rem',
   }
 }
-export default Header;
+export default connect(null, { action_getUserID })(Header) ;

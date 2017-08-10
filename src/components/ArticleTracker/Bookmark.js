@@ -13,6 +13,7 @@ class Bookmark extends Component {
   render() {
 
     const { img } = style
+    console.log("Bookmark Props: ", this.props)
     if (!this.state.saved) {
       return (
         <div>

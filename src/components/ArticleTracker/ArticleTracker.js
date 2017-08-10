@@ -3,6 +3,8 @@ import Stars from './Stars';
 import Bookmark from './Bookmark'
 import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite'
+import { action_getUserID } from '../../ducks/reducer'
+import { connect } from 'react-redux'
 
 class ArticleTracker extends Component {
   constructor(props) {
@@ -15,15 +17,17 @@ class ArticleTracker extends Component {
 
   render() {
     const { container, ul } = style
-    console.log("Props:", this.props)
+
     return (
       <div className={ css(container) }>
         <ul className={ css(ul) }>
           <li>
-            <Stars article={this.props.url}/>
+            <Stars article={this.props.url}
+                   id={this.props.id}/>
           </li>
           <li>
-            <Bookmark article={this.props.url}/>
+            <Bookmark article={this.props.url}
+                    id={this.props.id}/>
           </li>
         </ul>
       </div>
@@ -42,4 +46,10 @@ const style = StyleSheet.create({
     alignItems: 'bottom',
   }
 })
-export default ArticleTracker;
+
+function mapStateToProps(state) {
+  return {
+    id: state.user
+  }
+}
+export default connect(mapStateToProps)(ArticleTracker);

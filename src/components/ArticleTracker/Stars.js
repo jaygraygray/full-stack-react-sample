@@ -12,6 +12,8 @@ export default class Stars extends Component {
   handleRate = (e, { rating, maxRating }) => this.setState({ rating })
 
   render() {
+
+    console.log("Stars Props: ", this.props)
     return (
       <div>
         <Rating maxRating={5} 

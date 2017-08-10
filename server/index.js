@@ -83,7 +83,7 @@ app.get('/auth/me', function(req, res) {
 
 app.get('/auth/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('http://localhost:10000');
 })
 
 // app.get('/auth', passport.authenticate('auth0')); // authenticate the user

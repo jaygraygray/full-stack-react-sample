@@ -8,33 +8,38 @@ class Header extends Component {
   constructor(){
     super()
     this.state = {
-      userData: null
+      displayName: null
     }
 
-    this.handleClick = this.handleClick.bind(this)
+    //this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick() {
+  componentDidMount() {
     axios.get('/auth/me').then( (r) => {
       console.log(r)
       this.setState({
-        userData: r
+        displayName: r.data.displayName
       })
     })
   }
 
+
   render() {
 
   const { container, aligner, h1 } = style
- 
+    let display 
+
+    console.log(this.state.displayName)
   return (
     <div style={ container }>
 
       <div style={ aligner }>
         <h1 style={ h1 }>The Times</h1>
         <Search />
-        <button onClick={this.handleClick}>Check Logged In</button>
-        <a href="http://localhost:9999/auth"><h3>Login</h3></a>
+    { this.state.displayName ? 
+      display = <a href="http://localhost:9999/auth/logout">Log Out</a> :
+      display = <a href="http://localhost:9999/auth"><h3>Login</h3></a> }
+      
       </div>
 
       <HeaderNav />

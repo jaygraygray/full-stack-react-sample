@@ -1,5 +1,5 @@
 CREATE TABLE users(
-id int not null primary key,
+id varchar(55) not null primary key,
 username varchar(60),
 profile_img varchar(255)
 );

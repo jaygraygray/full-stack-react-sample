@@ -4,18 +4,14 @@ import LoginMenu from './LoginMenu'
 
 class Login extends Component {
 
-
-
-
   render() {
 
-    const { img, ul, p, li } = style
-
+    const { img, ul, p, li, a } = style
 
     if (!this.props.user) {
       return (
         <div>
-          <a href="http://localhost:9999/auth/">Log In</a>
+          <a className={ css(a) } href="http://localhost:9999/auth/">Log In</a>
         </div>
       );
     } else {
@@ -53,7 +49,6 @@ const style = StyleSheet.create({
     listStyle: 'none',
   },
 
-
   p: {
     fontFamily: 'Arial',
     fontSize: '1rem'
@@ -63,6 +58,22 @@ const style = StyleSheet.create({
     marginLeft: '24px',
     textAlign: 'center',
   },
+
+  a: {
+    color: '#fff',
+    textDecoration: 'none',
+    ":hover": {
+      textDecoration: 'underline',
+    },
+    ":visited": {
+      color: '#fff',
+      textDecoration: 'none',  
+    },
+    ":acitve": {
+      color: '#fff',
+      textDecoration: 'none',
+    }
+  }
 })
 
 export default Login;

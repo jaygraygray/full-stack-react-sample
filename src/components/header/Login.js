@@ -20,16 +20,16 @@ class Login extends Component {
   }
   render() {
 
-    const { img, ul, p, li, menu, menuUL, menuLI, menuTrigger } = style
+    const { img, ul, p, li, menu, menuUL, menuLI, menuTrigger, link } = style
     let menuActive = null;
     this.state.menuState ?
       menuActive = StyleSheet.create({ menu: { opacity: 1 }}) :
       menuActive = StyleSheet.create({ menu: { opacity: 0 }})
 
-    if (this.props.user === null) {
+    if (!this.props.user) {
       return (
         <div>
-          Not Logged In
+          <a href="http://localhost:9999/auth/">Log In</a>
         </div>
       );
     } else {
@@ -47,15 +47,21 @@ class Login extends Component {
             <div className={ css(menuTrigger) } onClick={ this.openMenu }>\/</div>
               <div className={ css([menu, menuActive.menu]) }>
                 <ul className={ css(menuUL) }>
-                  <li className={ css(menuLI) }>
-                    <a href="http://localhost:9999/auth/logout">Logout</a>
-                  </li>
-                  <li className={ css(menuLI) }>
-                    <a href="#">Ratings</a>
-                  </li>
-                  <li className={ css(menuLI) }>
-                    <a href="#">Bookmarks</a>
-                  </li>
+                  <a className={css(link)} href="http://localhost:9999/auth/logout">
+                    <li className={ css(menuLI) }>
+                      Logout
+                    </li>
+                  </a>
+                  <a className={css(link)} href="#">
+                    <li className={ css(menuLI) }>
+                      Ratings
+                    </li>
+                  </a>
+                  <a className={ css(link) } href="#">
+                    <li className={ css(menuLI) }>
+                      Bookmarks
+                    </li>
+                  </a>
                 </ul>
               </div>
           </li>
@@ -87,9 +93,12 @@ const style = StyleSheet.create({
     borderColor: '#fff',
     paddingBottom: '12px',
     width: '34px',
-    "hover:": {
-      width: '20px',
-      cursor: 'pointer'
+    transition: 'all .2s',
+    ":hover": {
+      cursor: 'pointer',
+      transition: 'all .2s',
+      paddingTop: '12px',
+      paddingBottom: '4px'
     }
   },
 
@@ -105,11 +114,11 @@ const style = StyleSheet.create({
 
   menu: {
     width: '200px',
-    height: '100px',
     position: 'absolute',
     right: '0',
-    top: '120',
-    background: '#fff'
+    top: '64px',
+    background: '#242f36',
+    
   },
 
   menuUL: {
@@ -117,7 +126,22 @@ const style = StyleSheet.create({
   },
 
   menuLI: {
-    background: 'blue'
+    padding: '24px',
+    transition: 'all .2s',
+    ":hover": {
+      background: '#c1c7d4',
+      transition: 'all .2s',
+    },
+  },
+
+  link : {
+    background: 'pink',
+    color: '#fff',
+    textDecoration: 'none',
+    ":hover": {
+      color: '#000',
+      textDecoration: 'underline', 
+    }
   }
 })
 

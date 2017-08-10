@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
+import ArticleTracker from '../ArticleTracker/ArticleTracker'
+
 
 class Article extends Component {
     
     render() {
 
-    let { container, img, content, bodyText, authorText, dateText, p } = style
+    let { container, img, content, bodyText, authorText, dateText, p, article } = style
     let { image, title, body, author, date, url } = this.props
 
     return (
         <div className={ css(container) }>
 
             <div className={ css(img) }> <img src={ image && image.url } alt="Headline"/> </div>
-
+            <div className={ css(article) }>
+                <ArticleTracker url={url}/>
+            </div>
             <div className={ css(content) }>
 
                 <a href={url}>
@@ -32,6 +36,7 @@ class Article extends Component {
 
 const style = StyleSheet.create({
     container: {
+        position: 'relative',
         width: '60%',
         minHeight: '142px',
         margin: 'auto',
@@ -65,6 +70,20 @@ const style = StyleSheet.create({
     bodyText: { color: '#1a1a1a' },
     authorText: { color: '#A9A9A9' },
     dateText: { color: '#0000A0'},
+
+    article: {
+        position: 'absolute',
+        left: '120px',
+        bottom: '0',
+        display: 'flex',
+        justifyContent: 'space-around',
+        opacity: '0',
+        width: '100%',
+        height: '100%',
+        ":hover": {
+            opacity: '1'
+        }
+  }
 })
 
 export default Article;

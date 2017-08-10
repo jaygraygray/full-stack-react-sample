@@ -1,12 +1,12 @@
 
-var makeHTTPRequest = require('request')
+var http = require('request')
 
 const config = require('./config')
 
 module.exports = {
 
  getSection: (request, response) => {
-  makeHTTPRequest({
+  http({
     url: `https://api.nytimes.com/svc/topstories/v2/${request.params.section}.json`,
     qs: { 'api-key': config.apiKey },
     }, (NYTreq, NYTres) => { 
@@ -30,7 +30,7 @@ module.exports = {
 
   search: (request, response) => {
     console.log(request.params)
-    makeHTTPRequest({
+    http({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
         'api-key': config.apiKey,
@@ -51,6 +51,7 @@ module.exports = {
         }
       })
       response.send(results)
+      
     })
   }
 }

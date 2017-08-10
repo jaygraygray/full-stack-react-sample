@@ -4,7 +4,7 @@ const
     bodyParser = require('body-parser'),
     cors = require('cors'),
     port = process.env.PORT || 9999,
-    ctrl = require('./backendController')
+    NYTctrl = require('./NYTController')
     config = require('./config.js')
     passport = require('passport')
     Auth0Strategy = require('passport-auth0')
@@ -39,7 +39,7 @@ passport.use(new Auth0Strategy({
    function(accessToken, refreshToken, extraParams, profile, done) {
        
     const dbInstance = app.get('db');
-    
+    console.log(profile)
     var user = dbInstance.users.findOne({ id: profile.id } )
         .then(userInfo => {
             console.log(userInfo)
@@ -62,9 +62,9 @@ passport.deserializeUser(function(user, done) {
 
 
 // Sent Endpoints
-app.get('/view/:section', ctrl.getSection)
+app.get('/view/:section', NYTctrl.getSection)
 
-app.get('/search/:item/:page', ctrl.search)
+app.get('/search/:item/:page', NYTctrl.search)
 
 app.get('/auth', passport.authenticate('auth0'));
 

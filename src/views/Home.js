@@ -4,7 +4,6 @@ import moment from 'moment'
 import Article from '../components/article/Article'
 import TopStories from '../components/topStories/TopStories'
 
-import ArticleTracker from '../components/ArticleTracker/ArticleTracker'
 
 class Home extends Component {
 
@@ -68,16 +67,16 @@ class Home extends Component {
       return (
         <div>
 
-        <ArticleTracker/>
-        <Article
-        key={i}
-        image={data.imgData[1]}
-        title={data.title}
-        body={data.abstract}
-        author={data.byline}
-        date={date}
-        url={data.url}
-        />
+          
+          <Article
+          key={i}
+          image={data.imgData[1]}
+          title={data.title}
+          body={data.abstract}
+          author={data.byline}
+          date={date}
+          url={data.url}
+          />
         </div>
         )
       }

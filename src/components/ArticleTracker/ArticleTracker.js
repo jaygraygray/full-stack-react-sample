@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import Stars from './Stars';
 import Bookmark from './Bookmark'
-
+import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite'
 
 class ArticleTracker extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      url : null
+    }
+  }
+
+
   render() {
     const { container, ul } = style
+    console.log("Props:", this.props)
     return (
       <div className={ css(container) }>
         <ul className={ css(ul) }>
           <li>
-            <Stars/>
+            <Stars article={this.props.url}/>
           </li>
           <li>
-            <Bookmark />
+            <Bookmark article={this.props.url}/>
           </li>
         </ul>
       </div>

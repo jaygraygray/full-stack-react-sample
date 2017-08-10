@@ -3,7 +3,7 @@ import moment from 'moment'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 
-
+import ArticleTracker from '../ArticleTracker/ArticleTracker'
 class MinorHeadline extends Component {
   constructor() {
   super()
@@ -18,20 +18,24 @@ class MinorHeadline extends Component {
 
   render() {
   
-    const { container, h1, author, date, ul, li } = style
+    const { container, h1, author, date, ul, li, article } = style
     const { title, byline, datePublished, url} = this.state
   
       return (
         
         <div className={ css(container) }>
 
-        <a href={url}>
-          <h1 className={ css(h1) }> {title} </h1>
-        </a>
+          <div className={ css(article) }>
+            <ArticleTracker url={url}/>
+          </div>
+
+          <a href={url}>
+            <h1 className={ css(h1) }> {title} </h1>
+          </a>
 
           <ul className={ css(ul) }>
             <li className={ css(li) }><p className={ css(author) }> {byline} </p></li>
-            <li className={ css(li) }><p className={ css(date) }> {moment(datePublished).format('h:mm a')} </p></li>
+            <li className={ css(li) }><p className={ css(date) }>&nbsp; @ &nbsp; {moment(datePublished).format('h:mm a')} </p></li>
           </ul>
 
         </div>
@@ -40,6 +44,7 @@ class MinorHeadline extends Component {
 }
 const style = StyleSheet.create({
   container : {
+    position: 'relative',
     height: '165px',
     padding: '20px',
     marginTop: '18px',
@@ -68,10 +73,23 @@ const style = StyleSheet.create({
   ul: {
     listStyle: 'none',
     marginTop: '26px',
+    display: 'flex',
   },
   li : {
     marginTop: '6px',
     textAlign: 'right'
+  },
+  article: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    bottom: '6px',
+    width: '100%',
+    height: '100%',
+    opacity: '0',
+      ":hover": {
+        opacity: '1'
+      }
   }
 })
 export default MinorHeadline;

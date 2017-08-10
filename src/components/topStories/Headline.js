@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
 import ArticleTracker from '../ArticleTracker/ArticleTracker'
 
 class Headline extends Component {
 
   constructor() {
     super()
-    this.state = {}
+    this.state = {
+      userID: null
+    }
   }
 
+  componentDidMount() {
+    axios.get('/auth/me').then( (r) => {
+      console.log(r)
+      this.setState({
+        userID: r.data._json
+      })
+    })
+  }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.story !== nextProps.story) {
@@ -23,8 +33,6 @@ class Headline extends Component {
 
     const { container, info, h1, p, content, ul, li, article } = style
     const { title, byline, date, abstract, imgData, url } = this.state
-  
-    console.log(this.state)
 
     return (
       
@@ -32,8 +40,9 @@ class Headline extends Component {
       <div className={ css(container) }>
       
         <div className={ css(info) }>
+          
           <div className={ css (article) }>
-            <ArticleTracker/>
+            <ArticleTracker url={url}/>
           </div>
           
           <ul className={ css(ul) }>

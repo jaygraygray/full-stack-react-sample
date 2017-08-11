@@ -49,7 +49,7 @@ class Bookmarks extends Component {
 
   render() {
 
-    const { ul, li, container, h1 } = style
+    const { ul, li, container, h1, remove, title } = style
 
     var articles = null;
 
@@ -58,9 +58,10 @@ class Bookmarks extends Component {
       articles = this.state.articles.map( (article) => {
         return (
           <ul className={ css(ul) }>
-           <li className={ css(li) } style={ {width: '60%'} }> <a href={ article.url }> { article.title}  </a></li>
-            <li className={ css(li) } style={ {width: '20%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
-            <li className={ css(li) } style={ {width: '20%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>remove</li>
+            <li className={ css(li, title) } style={ {width: '50%'} }> <a href={ article.url }> { article.title}  </a></li>
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
+            <li className={ css(li, remove) } style={ {width: '10%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
           </ul>
         )
       })
@@ -69,7 +70,12 @@ class Bookmarks extends Component {
       <div className={ css(container) }>
 
       <h1 className={ css(h1) }>Bookmarks</h1>
-
+          <ul className={ css(ul) }>
+            <li className={ css(li) } style={ {width: '50%'} }><b>Title</b>  </li>
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }><b>Date Published</b></li> 
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }><b>Date Added</b></li> 
+            <li className={ css(li) } style={ {width: '10%', textAlign: 'center'} }><b>Remove</b></li>
+          </ul>
           { articles }
 
       </div>
@@ -77,6 +83,23 @@ class Bookmarks extends Component {
   }
 }
 const style = StyleSheet.create({
+  remove: {
+    fontSize: '2rem',
+    fontWeight: 'bold',
+    paddingBottom: '12px',
+    transition: 'all .2s',
+      ":hover": {
+        transition: 'all .2s',
+        cursor: 'pointer',
+        background: 'pink'
+      }
+  },
+  title: {
+    transition: 'all .2s',
+      ":hover": {
+        paddingLeft: '32px'
+      }
+  },
   h1 : {
     textAlign: 'center',
     marginBottom: '48px',

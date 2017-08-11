@@ -6,66 +6,41 @@ const
     port = process.env.PORT || 9999,
     NYTctrl = require('./NYTController')
     config = require('./config.js')
-    passport = require('passport')
-    Auth0Strategy = require('passport-auth0')
+    passport = require('./auth')
     session = require('express-session')
     massive = require('massive')
+    articles = require('./articlesController')
 
-      
+// ----------------------------------
 // Apply middleware
+// -----------------------------------
 app.use( bodyParser.json() )
 app.use( cors({ 
     origin: '*'
     }) 
 )
 
+// -----------------------------------
+// Setup DB conn
+// -----------------------------------
 massive(config.DB_URI).then(dbInstance => app.set('db', dbInstance)).catch(console.error)
 
-
+// -----------------------------------
+// Set up sessions 
+// -----------------------------------
 app.use(session({
   resave: true, 
   saveUninitialized: true, 
   secret: config.sessionSecret
 }))
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new Auth0Strategy({
-    domain: config.auth0.domain,
-    clientID: config.auth0.clientID,
-    clientSecret: config.auth0.clientSecret,
-    callbackURL: config.auth0.callbackUrl
-    },
-   function(accessToken, refreshToken, extraParams, profile, done) {
-       
-    const dbInstance = app.get('db');
-    console.log(profile)
-    var user = dbInstance.users.findOne({ id: profile.id } )
-        .then(userInfo => {
-            console.log(userInfo)
-            if (userInfo !== null) {
-                dbInstance.users.insert({id: profile._json.clientID, username: `${profile.displayName}`, profile_img: `${profile.picture}`})
-                .then(res => res).catch(console.error, 'Error');
-            }
-        })
 
-    done(null, profile);
-}))
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-  done(null, user);
-});
-
-
-// Sent Endpoints
-app.get('/view/:section', NYTctrl.getSection)
-
-app.get('/search/:item/:page', NYTctrl.search)
-
+// -----------------------------------
+// auth end points
+// -----------------------------------
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', 
@@ -85,6 +60,18 @@ app.get('/auth/logout', function(req, res) {
   res.redirect('http://localhost:10000');
 })
 
+// -----------------------------------
+//  Endpoints
+// -----------------------------------
+app.get('/view/:section', NYTctrl.getSection)
+
+app.get('/search/:item/:page', NYTctrl.search)
+
+
+app.get('/articles/:actionCategory', articles.getInfo)
+app.post('/articles/:actionCategory', articles.addNew)
+app.delete('/articles/:actionCategory', articles.delete)
+app.put('/articles/:actionCategory', articles.updateScore)
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(`${__dirname}/../build`))

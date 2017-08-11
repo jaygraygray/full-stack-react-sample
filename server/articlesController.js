@@ -2,9 +2,12 @@ module.exports = {
 
   getInfo : (req, res) => {
     
-    if (req.params.actionCategory === 'bookmarks') {
-      res.status(200).send('getinfo')
-    }
+ 
+      const dbInstance = app.get('db');
+      console.log(req.params)
+      dbInstance.run(`select * from articles where user_id = '${req.params.uid}'`)
+                .then( resp => res.status(200).send(resp))
+                .catch(console.error, "Error getting articles info")
   },
 
   addNew : (req, res) => {

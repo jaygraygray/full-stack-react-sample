@@ -82,7 +82,8 @@ const style = {
     fontSize: '.7rem',
     fontWeight: 'bold',
     paddingLeft: '8px',
-    width: '200px'
+    width: '327px',
+    textAlign: 'center'
   }
 }
 export default withRouter(Search);

@@ -38,9 +38,9 @@ class LoginMenu extends Component {
 
         <div className={ css([menu, menuActive.menu]) }>
           <ul className={ css(menuUL) }>
-            <a className={css(link)} href="http://localhost:9999/auth/logout">
+            <a className={ css(link) } href="#">
               <li className={ css(menuLI) }>
-                Logout
+                Bookmarks
               </li>
             </a>
             <a className={css(link)} href="#">
@@ -48,9 +48,9 @@ class LoginMenu extends Component {
                 Ratings
               </li>
             </a>
-            <a className={ css(link) } href="#">
+            <a className={css(link)} href="http://localhost:9999/auth/logout">
               <li className={ css(menuLI) }>
-                Bookmarks
+                Logout
               </li>
             </a>
           </ul>

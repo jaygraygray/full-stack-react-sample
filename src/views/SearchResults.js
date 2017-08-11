@@ -12,7 +12,8 @@ class SearchResults extends Component {
    
     this.state = {
       searchResults: [],
-      currentPage: this.props.match.params.page
+      currentPage: this.props.match.params.page,
+      searchTerm: null
     }
 
     this.NextPage = this.NextPage.bind(this)
@@ -21,17 +22,20 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
-    this.updateResults(this.props.match.params.page)
+    this.updateResults(this.props.match.params.query, this.props.match.params.page)
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.match.params !== nextProps.match.params) {
-      this.updateResults(nextProps.match.params.page)
+      this.setState({
+        searchTerm: nextProps.match.params.page
+      })
+      this.updateResults(nextProps.match.params.query, nextProps.match.params.page)
     }
   }
 
-  updateResults(page) {
-    let { query } = this.props.match.params
+  updateResults(query, page) {
+ 
     axios.get(`/search/${query}/${page}`)
     .then( r => {
       this.setState({
@@ -40,19 +44,19 @@ class SearchResults extends Component {
     })
   }
 
-  // updates URL and refires API call to update articles
+
   NextPage() {
     let page = parseInt(this.props.match.params.page)
     page++
     this.props.history.push(`/search/${this.props.match.params.query}/${page}`) 
-    this.updateResults(page)
+    this.updateResults(this.props.match.params.query, page)
   }
 
   PrevPage() {
     let page = parseInt(this.props.match.params.page)
     page--
     this.props.history.push(`/search/${this.props.match.params.query}/${this.props.match.params.page}`)
-    this.updateResults(page)
+    this.updateResults(this.props.match.params.query, page)
   }
 
   render() {

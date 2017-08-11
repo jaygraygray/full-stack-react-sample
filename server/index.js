@@ -44,7 +44,7 @@ app.use(passport.session());
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', 
-{ successRedirect: 'http://localhost:10000'}));
+{ successRedirect: 'http://localhost:9998'}));
 
 
 app.get('/auth/me', function(req, res) {
@@ -57,7 +57,7 @@ app.get('/auth/me', function(req, res) {
 
 app.get('/auth/logout', function(req, res) {
   req.logout();
-  res.redirect('http://localhost:10000');
+  res.redirect('http://localhost:9998');
 })
 
 // -----------------------------------
@@ -70,7 +70,7 @@ app.get('/search/:item/:page', NYTctrl.search)
 
 app.get('/getarticles/:uid', articles.getInfo)
 app.post('/articles/:actionCategory', articles.addNew)
-app.delete('/articles/:actionCategory', articles.delete)
+app.post('/deletearticle/:uid/:url', articles.delete)
 app.put('/articles/:actionCategory', articles.updateScore)
 
 if (process.env.NODE_ENV === 'production') {

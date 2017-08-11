@@ -16,7 +16,6 @@ const strategy = new Auth0Strategy({
    function(accessToken, refreshToken, extraParams, profile, done) {
        
     const dbInstance = app.get('db');
-    console.log(profile)
     var user = dbInstance.users.findOne({ id: profile.id } )
         .then(userInfo => {
             console.log(userInfo)

@@ -1,10 +1,7 @@
 module.exports = {
 
   getInfo : (req, res) => {
-    
- 
       const dbInstance = app.get('db');
-      console.log(req.params)
       dbInstance.run(`select * from articles where user_id = '${req.params.uid}'`)
                 .then( resp => {
                   res.status(200).send(resp)
@@ -17,7 +14,12 @@ module.exports = {
   },
 
   delete : (req, res) => {
-    res.status(200).send('del')
+    const dbInstance = app.get('db');
+    console.log("DELETE METHOD", req.params)
+    dbInstance.run(`delete from articles where 
+                    user_id = '${req.params.uid}' and
+                    url = '${req.params.url}'`)
+    res.status(200).send(req.params.url)
   },
 
   updateScore : (req, res) => {

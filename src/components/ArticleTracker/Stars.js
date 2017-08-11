@@ -9,6 +9,8 @@ export default class Stars extends Component {
     }
   }
 
+  // get info for each article from userID that's saved in store
+
   handleRate = (e, { rating, maxRating }) => this.setState({ rating })
 
   render() {

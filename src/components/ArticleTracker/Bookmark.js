@@ -10,6 +10,8 @@ class Bookmark extends Component {
     }
   }
 
+  // get info for each article from userID that's saved in store
+  
   render() {
 
     const { img } = style

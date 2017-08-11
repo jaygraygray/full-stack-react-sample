@@ -13,6 +13,7 @@ class Search extends Component {
   //bind functions so they can be accessed in render()
   this.search = this.search.bind(this)
   this.onSearchChange = this.onSearchChange.bind(this)
+  this.clear = this.clear.bind(this)
   }
 
   // e = event take from form submission
@@ -25,6 +26,10 @@ class Search extends Component {
   //logs the value of what's being searched
   onSearchChange(e) {
     this.setState( { searchTerm: e.target.value } )
+  }
+
+  clear() {
+    this.refs.search.value = ''
   }
 
   render() {
@@ -42,7 +47,7 @@ class Search extends Component {
           </li>
          
           <li style={ li }>
-            <input style={ input } defaultValue="Search"  onChange={ this.onSearchChange }/> 
+            <input style={ input } defaultValue="Search"  onChange={ this.onSearchChange } onClick={ this.clear } ref="search"/> 
           </li>
           
         </ul>
@@ -69,7 +74,7 @@ const style = {
     height: '34px'
   },
   input : {
-    height: '32px',
+    height: '34px',
     color: '#fff',
     borderRadius: '0 40px 40px 0',
     background: '#3a434a',

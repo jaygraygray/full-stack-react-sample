@@ -13,7 +13,6 @@ export default class Stars extends Component {
 
   render() {
 
-    console.log("Stars Props: ", this.props)
     return (
       <div>
         <Rating maxRating={5} 

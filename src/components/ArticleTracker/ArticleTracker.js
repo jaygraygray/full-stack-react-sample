@@ -16,6 +16,9 @@ class ArticleTracker extends Component {
 
 
   render() {
+
+      console.log(this.props)
+
     const { container, ul } = style
 
     return (

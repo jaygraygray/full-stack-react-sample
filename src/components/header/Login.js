@@ -6,7 +6,7 @@ class Login extends Component {
 
   render() {
 
-    const { img, ul, p, li, a } = style
+    const { img, ul, p, li, a, arrow } = style
 
     if (!this.props.user) {
       return (
@@ -17,24 +17,29 @@ class Login extends Component {
     } else {
 
       return (
+        <LoginMenu>
         <ul className={ css(ul) }>
-          <li className={ css(li) }>
-            <p className={ css(p) }>Welcome back, <br /> 
-            { this.props.user.displayName } </p>
-          </li>
-          <li className={ css(li) }>
-            <img src={this.props.user.picture} className={ css(img) }/>
-          </li>
-          <li className={ css(li) }>
-            <LoginMenu/>
-          </li>
+
           
+            <li className={ css(li) }>
+              <p className={ css(p) }> { this.props.user.displayName }  <span className={ css(arrow) }>v</span> </p>
+            </li>
+            <li className={ css(li) }>
+              <img src={this.props.user.picture} className={ css(img) }/>
+            </li>
+          
+
         </ul>
+        </LoginMenu>
       );  
     }
   }
 }
 const style = StyleSheet.create({
+  arrow : {
+    marginLeft: '24px',
+    color: '#a9a9a9',
+  },
   img : {
     margin: '0',
     padding: '0',
@@ -47,6 +52,7 @@ const style = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     listStyle: 'none',
+    justifyContent: 'space-between'
   },
 
   p: {

@@ -21,16 +21,21 @@ class LoginMenu extends Component {
 
     render() {
 
-    const { menu, menuUL, menuLI, menuTrigger, link } = style
+    const { menu, menuUL, menuLI, menuTrigger, link, menuWrapper } = style
 
     let menuActive = null;
     this.state.menuState ?
       menuActive = StyleSheet.create({ menu: { opacity: 1 }}) :
       menuActive = StyleSheet.create({ menu: { opacity: 0 }})
 
+      
     return (
-      <div>
-      <div className={ css(menuTrigger) } onClick={ this.openMenu }>\/</div>
+      
+      <div onClick={ this.openMenu } className={ css(menuWrapper) }>
+        {this.props.children}
+
+        
+
         <div className={ css([menu, menuActive.menu]) }>
           <ul className={ css(menuUL) }>
             <a className={css(link)} href="http://localhost:9999/auth/logout">
@@ -57,7 +62,8 @@ class LoginMenu extends Component {
 
 const style = StyleSheet.create({
   menu: {
-    width: '200px',
+    zIndex:'1',
+    width: '222px',
     position: 'absolute',
     right: '0',
     top: '64px',
@@ -102,5 +108,8 @@ const style = StyleSheet.create({
       paddingBottom: '4px'
     }
   },
+  menuWrapper: {
+    cursor: 'pointer'
+  }
 })
 export default LoginMenu;

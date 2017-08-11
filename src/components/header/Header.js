@@ -19,12 +19,11 @@ class Header extends Component {
 
   componentDidMount() {
     axios.get('/auth/me').then( (r) => {
-      this.props.action_getUserID(r.data._json.clientID)
-      console.log(r.data)
-      this.setState({
-        userData: r.data
+        if (r.data) {
+          this.setState({ userData: r.data })
+          this.props.action_getUserID(r.data._json.clientID)
+        }
       })
-    })
   }
 
   

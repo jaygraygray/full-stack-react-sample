@@ -70,7 +70,8 @@ app.get('/search/:item/:page', NYTctrl.search)
 
 app.get('/getarticles/:uid', articles.getInfo)
 app.post('/articles/:actionCategory', articles.addNew)
-app.post('/deletearticle/:uid/:url', articles.delete)
+//app.get('/deletearticle', articles.delete)
+app.get('/deletearticle/:uid/:id', articles.delete)
 app.put('/articles/:actionCategory', articles.updateScore)
 
 if (process.env.NODE_ENV === 'production') {

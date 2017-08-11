@@ -14,12 +14,18 @@ module.exports = {
   },
 
   delete : (req, res) => {
+    console.log('UID:', req.params.uid)
+    console.log('URL:', req.params.id)
     const dbInstance = app.get('db');
     console.log("DELETE METHOD", req.params)
     dbInstance.run(`delete from articles where 
                     user_id = '${req.params.uid}' and
-                    url = '${req.params.url}'`)
-    res.status(200).send(req.params.url)
+                    id = '${req.params.id}'`)
+              .then( resp => {
+                res.status(200).send(`${req.params.url} has been deleted.`)
+              })
+              .catch(console.error, 'Error deleting article')
+    
   },
 
   updateScore : (req, res) => {

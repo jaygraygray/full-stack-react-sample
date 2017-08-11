@@ -35,12 +35,12 @@ class Bookmarks extends Component {
           })
   }
 
-  removeArticle(url) {
-   axios.post(`/deletearticle/${this.props.uid}/${url}`)
+  removeArticle(id) {
+   axios.get(`/deletearticle/${this.props.uid}/${id}`)
         .then( resp => console.log(resp))
     this.setState({
       articles: this.state.articles.filter( articles => {
-        return articles.url !== url
+        return articles.id !== id
       })
     })
 
@@ -60,7 +60,7 @@ class Bookmarks extends Component {
           <ul className={ css(ul) }>
            <li className={ css(li) } style={ {width: '60%'} }> <a href={ article.url }> { article.title}  </a></li>
             <li className={ css(li) } style={ {width: '20%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
-            <li className={ css(li) } style={ {width: '20%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.url) }}>remove</li>
+            <li className={ css(li) } style={ {width: '20%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>remove</li>
           </ul>
         )
       })

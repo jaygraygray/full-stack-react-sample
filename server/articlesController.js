@@ -6,7 +6,9 @@ module.exports = {
       const dbInstance = app.get('db');
       console.log(req.params)
       dbInstance.run(`select * from articles where user_id = '${req.params.uid}'`)
-                .then( resp => res.status(200).send(resp))
+                .then( resp => {
+                  res.status(200).send(resp)
+                })
                 .catch(console.error, "Error getting articles info")
   },
 

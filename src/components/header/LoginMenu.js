@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite'
-
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 class LoginMenu extends Component {
 
   constructor() {
@@ -38,11 +39,13 @@ class LoginMenu extends Component {
 
         <div className={ css([menu, menuActive.menu]) }>
           <ul className={ css(menuUL) }>
-            <a className={ css(link) } href="#">
-              <li className={ css(menuLI) }>
-                Bookmarks
-              </li>
-            </a>
+            <Link to={`bookmarks/${this.props.uid}`}>
+              <a className={ css(link) } href="#">
+                <li className={ css(menuLI) }>
+                  Bookmarks
+                </li>
+              </a>
+            </Link>
             <a className={css(link)} href="#">
               <li className={ css(menuLI) }>
                 Ratings
@@ -112,4 +115,6 @@ const style = StyleSheet.create({
     cursor: 'pointer'
   }
 })
-export default LoginMenu;
+export default connect( (state) => {
+  return { uid: state.user }
+})(LoginMenu);

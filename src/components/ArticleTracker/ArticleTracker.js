@@ -25,11 +25,11 @@ class ArticleTracker extends Component {
       <div className={ css(container) }>
         <ul className={ css(ul) }>
           <li>
-            <Stars article={this.props.url}
+            <Stars article={this.props.id}
                    id={this.props.id}/>
           </li>
           <li>
-            <Bookmark article={this.props.url}
+            <Bookmark article={this.props.id}
                     id={this.props.id}/>
           </li>
         </ul>

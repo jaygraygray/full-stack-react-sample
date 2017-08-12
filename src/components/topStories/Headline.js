@@ -4,6 +4,7 @@ import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ArticleTracker from '../ArticleTracker/ArticleTracker'
+import _ from 'underscore'
 
 class Headline extends Component {
 
@@ -33,7 +34,8 @@ class Headline extends Component {
 
     const { container, info, h1, p, content, ul, li, article } = style
     const { title, byline, date, abstract, imgData, url } = this.state
-
+    var articleInfo = _.pick(this.state, 'title', 'date', 'url')
+    
     return (
       
 
@@ -42,7 +44,7 @@ class Headline extends Component {
         <div className={ css(info) }>
           
           <div className={ css (article) }>
-            <ArticleTracker url={url}/>
+            <ArticleTracker info={articleInfo}/>
           </div>
           
           <ul className={ css(ul) }>

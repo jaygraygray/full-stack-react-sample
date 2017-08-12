@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import ArticleTracker from '../ArticleTracker/ArticleTracker'
-
+import _ from 'underscore'
 
 class Article extends Component {
     
     render() {
 
     let { container, img, content, bodyText, authorText, dateText, p, article } = style
-    let { image, title, body, author, date, url } = this.props
-
+    let { image, title, body, author, date, url, id } = this.props
+    var articleInfo = _.pick(this.state, 'title', 'date', 'url')
     return (
         <div className={ css(container) }>
 
             <div className={ css(img) }> <img src={ image && image.url } alt="Headline"/> </div>
             <div className={ css(article) }>
-                <ArticleTracker url={url}/>
+                <ArticleTracker info={articleInfo}/>
             </div>
             <div className={ css(content) }>
 

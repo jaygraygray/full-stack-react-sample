@@ -4,18 +4,9 @@ import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import moment from 'moment'
 import  _ from 'underscore'
-// import ArticleTracker from './components/ArticleTracker'
-//import Delete from './components/Delete'
-
 
 class Bookmarks extends Component {
 
-  // sort by
-  //// ABC by title
-  //// Date added
-  // 
-  // remove bookmark
-  // visit url
   constructor() {
     super()
     this.state = {
@@ -79,8 +70,15 @@ class Bookmarks extends Component {
 
   }
 
-  render() {
 
+  //BookmarksList
+  //BookmarksFilter
+
+  //RatingsList
+  //RatingsFilter
+
+  render() {
+    
     const { ul, li, container, h1, remove, title } = style
 
     var articles = null;
@@ -101,11 +99,13 @@ class Bookmarks extends Component {
     return (
       <div className={ css(container) }>
 
+      { this.props.match.params.pageType === 'bookmarks'}
+
       <h1 className={ css(h1) }>Bookmarks</h1>
           <ul className={ css(ul) }>
             <li className={ css(li) } style={ {width: '48%'} } onClick={ this.filterByTitle }><b>Title</b>&nbsp;&nbsp; [ Sort: { this.state.titleFilter } ]</li>
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published} </li> 
-            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}> <b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published }</li> 
+            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}><b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
             <li className={ css(li) } style={ {width: '14%', textAlign: 'center'} } ><b>Remove</b></li>
           </ul>
           { articles }

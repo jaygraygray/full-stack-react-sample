@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite'
+import axios from 'axios'
 
 class Bookmark extends Component {
 
@@ -11,6 +12,7 @@ class Bookmark extends Component {
   }
 
   // get info for each article from userID that's saved in store
+  // will need to be addBookmark and removeBookmark methods
   
   render() {
 
@@ -18,7 +20,7 @@ class Bookmark extends Component {
     
     if (!this.state.saved) {
       return (
-        <div>
+        <div onClick={ () => { this.addBookmark(this.props.uid) } }>
           <img className={ css(img) } src={require('./bookmark-white.svg')} />
         </div>
       );

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import moment from 'moment'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
-
 import ArticleTracker from '../ArticleTracker/ArticleTracker'
+import _ from 'underscore'
 class MinorHeadline extends Component {
   constructor() {
   super()
@@ -20,13 +20,13 @@ class MinorHeadline extends Component {
   
     const { container, h1, author, date, ul, li, article } = style
     const { title, byline, datePublished, url} = this.state
-  
+    var articleInfo = _.pick(this.state, 'title', 'date', 'url')
       return (
         
         <div className={ css(container) }>
 
           <div className={ css(article) }>
-            <ArticleTracker url={url}/>
+            <ArticleTracker info={articleInfo}/>
           </div>
 
           <a href={url}>

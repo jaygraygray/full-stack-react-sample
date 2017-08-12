@@ -64,8 +64,6 @@ class Home extends Component {
     
       return (
         <div>
-
-          
           <Article
           key={i}
           image={data.imgData[1]}

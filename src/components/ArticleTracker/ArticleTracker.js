@@ -3,24 +3,11 @@ import Stars from './Stars';
 import Bookmark from './Bookmark'
 import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite'
-import { action_getUserID } from '../../ducks/reducer'
 import { connect } from 'react-redux'
 
 class ArticleTracker extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      url : null
-    }
-  }
-
-  componentWillReceiveProps(nextState) {
-
-  }
 
   render() {
-
-      console.log("Article Tracker", this.props)
 
     const { container, ul } = style
 
@@ -28,12 +15,12 @@ class ArticleTracker extends Component {
       <div className={ css(container) }>
         <ul className={ css(ul) }>
           <li>
-            <Stars articleInfo={this.props.info}
+            <Stars info={this.props.info}
                    id={this.props.id}/>
           </li>
           <li>
-            <Bookmark article={this.props.info}
-                    id={this.props.id}/>
+            <Bookmark info={this.props.info}
+                      id={this.props.id}/>
           </li>
         </ul>
       </div>
@@ -53,9 +40,7 @@ const style = StyleSheet.create({
   }
 })
 
-function mapStateToProps(state) {
-  return {
-    id: state.user
-  }
-}
-export default connect(mapStateToProps)(ArticleTracker);
+
+export default connect( (state) => {
+  return { id: state.user }
+})(ArticleTracker);

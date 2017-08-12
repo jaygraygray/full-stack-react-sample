@@ -3,7 +3,7 @@ import axios from 'axios'
 import { StyleSheet, css } from 'aphrodite';
 import { connect } from 'react-redux';
 import moment from 'moment'
-
+import  _ from 'underscore'
 // import ArticleTracker from './components/ArticleTracker'
 //import Delete from './components/Delete'
 
@@ -19,10 +19,13 @@ class Bookmarks extends Component {
   constructor() {
     super()
     this.state = {
-      articles: null
+      articles: [],
+      date_published: '▲',
+      date_added: '▲'
     }
 
     this.removeArticle = this.removeArticle.bind(this)
+    this.filterByDate = this.filterByDate.bind(this)
   }
 
   componentDidMount() {
@@ -43,7 +46,23 @@ class Bookmarks extends Component {
         return articles.id !== id
       })
     })
+  }
 
+  filterByDate(dateType) {
+
+    if (this.state[dateType] === '▼') {
+      this.setState({
+        articles: this.state.articles.slice().sort((a,b) => { return a.id - b.id }),
+        [dateType]: '▲'
+      })
+    } else if (this.state[dateType] === '▲') {
+      this.setState({
+        articles: this.state.articles.slice().sort((a,b) => { return b.id - a.id }),
+        [dateType]: '▼'
+      })
+    }
+
+     
 
   }
 
@@ -59,9 +78,9 @@ class Bookmarks extends Component {
         return (
           <ul className={ css(ul) }>
             <li className={ css(li, title) } style={ {width: '50%'} }> <a href={ article.url }> { article.title}  </a></li>
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
-            <li className={ css(li, remove) } style={ {width: '10%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
+            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
+            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
+            <li className={ css(li, remove) } style={ {width: '14%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
           </ul>
         )
       })
@@ -71,10 +90,10 @@ class Bookmarks extends Component {
 
       <h1 className={ css(h1) }>Bookmarks</h1>
           <ul className={ css(ul) }>
-            <li className={ css(li) } style={ {width: '50%'} }><b>Title</b>  </li>
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }><b>Date Published</b></li> 
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }><b>Date Added</b></li> 
-            <li className={ css(li) } style={ {width: '10%', textAlign: 'center'} }><b>Remove</b></li>
+            <li className={ css(li) } style={ {width: '48%'} }><b>Title</b>&nbsp;&nbsp; v</li>
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published} </li> 
+            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}> <b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
+            <li className={ css(li) } style={ {width: '14%', textAlign: 'center'} } ><b>Remove</b></li>
           </ul>
           { articles }
 

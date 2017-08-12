@@ -14,10 +14,13 @@ class ArticleTracker extends Component {
     }
   }
 
+  componentWillReceiveProps(nextState) {
+
+  }
 
   render() {
 
-      console.log(this.props)
+      console.log("Article Tracker", this.props)
 
     const { container, ul } = style
 
@@ -25,11 +28,11 @@ class ArticleTracker extends Component {
       <div className={ css(container) }>
         <ul className={ css(ul) }>
           <li>
-            <Stars article={this.props.id}
+            <Stars articleInfo={this.props.info}
                    id={this.props.id}/>
           </li>
           <li>
-            <Bookmark article={this.props.id}
+            <Bookmark article={this.props.info}
                     id={this.props.id}/>
           </li>
         </ul>

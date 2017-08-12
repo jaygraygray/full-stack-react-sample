@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router-dom'
 import ArticleTracker from '../ArticleTracker/ArticleTracker'
 import _ from 'underscore'
+import moment from 'moment'
 
 class Article extends Component {
     
@@ -10,7 +11,8 @@ class Article extends Component {
 
     let { container, img, content, bodyText, authorText, dateText, p, article } = style
     let { image, title, body, author, date, url, id } = this.props
-    var articleInfo = _.pick(this.state, 'title', 'date', 'url')
+    var articleInfo = _.pick(this.props, 'title', 'date', 'url')
+  
     return (
         <div className={ css(container) }>
 
@@ -25,7 +27,7 @@ class Article extends Component {
                 </a>
                 <p className={ css(p) }> <span className={ css(bodyText) }> {body} </span></p>
                 <p className={ css(p) }> <span className={ css(authorText) }> {author} </span>
-                  | <span className={ css(dateText) }> {date} </span></p>
+                  | <span className={ css(dateText) }> { moment(date).format('h:mm a')} </span></p>
 
             </div>
 

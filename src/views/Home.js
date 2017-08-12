@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import moment from 'moment'
+
 import Article from '../components/article/Article'
 import TopStories from '../components/topStories/TopStories'
 
@@ -62,8 +62,6 @@ class Home extends Component {
   // generate list of articles
     const ArticlesList = this.state.stories.map( (data, i) => {
     
-      let date = moment(data.date).format('h:mm a')
-
       return (
         <div>
 
@@ -74,7 +72,7 @@ class Home extends Component {
           title={data.title}
           body={data.abstract}
           author={data.byline}
-          date={date}
+          date={data.date}
           url={data.url}
           />
         </div>

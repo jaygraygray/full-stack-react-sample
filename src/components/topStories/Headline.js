@@ -35,7 +35,7 @@ class Headline extends Component {
     const { container, info, h1, p, content, ul, li, article } = style
     const { title, byline, date, abstract, imgData, url } = this.state
     var articleInfo = _.pick(this.state, 'title', 'date', 'url')
-    
+
     return (
       
 

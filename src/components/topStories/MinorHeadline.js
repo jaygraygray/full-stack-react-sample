@@ -18,9 +18,10 @@ class MinorHeadline extends Component {
 
   render() {
   
-    const { container, h1, author, date, ul, li, article } = style
-    const { title, byline, datePublished, url} = this.state
+    const { container, h1, author, dateStyle, ul, li, article } = style
+    const { title, byline, date, url } = this.state
     var articleInfo = _.pick(this.state, 'title', 'date', 'url')
+  
       return (
         
         <div className={ css(container) }>
@@ -35,7 +36,7 @@ class MinorHeadline extends Component {
 
           <ul className={ css(ul) }>
             <li className={ css(li) }><p className={ css(author) }> {byline} </p></li>
-            <li className={ css(li) }><p className={ css(date) }>&nbsp; @ &nbsp; {moment(datePublished).format('h:mm a')} </p></li>
+            <li className={ css(li) }><p className={ css(dateStyle) }>&nbsp; @ &nbsp; {moment(date).format('h:mm a')} </p></li>
           </ul>
 
         </div>

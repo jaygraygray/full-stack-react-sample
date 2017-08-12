@@ -21,11 +21,13 @@ class Bookmarks extends Component {
     this.state = {
       articles: [],
       date_published: '▲',
-      date_added: '▲'
+      date_added: '▲',
+      titleFilter: 'abc'
     }
 
     this.removeArticle = this.removeArticle.bind(this)
     this.filterByDate = this.filterByDate.bind(this)
+    this.filterByTitle = this.filterByTitle.bind(this)
   }
 
   componentDidMount() {
@@ -49,7 +51,6 @@ class Bookmarks extends Component {
   }
 
   filterByDate(dateType) {
-
     if (this.state[dateType] === '▼') {
       this.setState({
         articles: this.state.articles.slice().sort((a,b) => { return a.id - b.id }),
@@ -61,8 +62,20 @@ class Bookmarks extends Component {
         [dateType]: '▼'
       })
     }
+  }
 
-     
+  filterByTitle() {
+    if (this.state.titleFilter === 'abc') {
+      this.setState({
+        articles: this.state.articles.slice().sort((a,b) => { return b.title.localeCompare(a.title) }),
+        titleFilter: 'zxy'
+      })
+    } else if (this.state.titleFilter === 'zxy') {
+      this.setState({
+        articles: this.state.articles.slice().sort((a,b) => { return a.title.localeCompare(b.title) }),
+        titleFilter: 'abc'
+      })  
+    }
 
   }
 
@@ -77,8 +90,8 @@ class Bookmarks extends Component {
       articles = this.state.articles.map( (article) => {
         return (
           <ul className={ css(ul) }>
-            <li className={ css(li, title) } style={ {width: '50%'} }> <a href={ article.url }> { article.title}  </a></li>
-            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
+            <li className={ css(li, title) } style={ {width: '48%'} }> <a href={ article.url }> { article.title}  </a></li>
+            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
             <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
             <li className={ css(li, remove) } style={ {width: '14%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
           </ul>
@@ -90,7 +103,7 @@ class Bookmarks extends Component {
 
       <h1 className={ css(h1) }>Bookmarks</h1>
           <ul className={ css(ul) }>
-            <li className={ css(li) } style={ {width: '48%'} }><b>Title</b>&nbsp;&nbsp; v</li>
+            <li className={ css(li) } style={ {width: '48%'} } onClick={ this.filterByTitle }><b>Title</b>&nbsp;&nbsp; [ Sort: { this.state.titleFilter } ]</li>
             <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published} </li> 
             <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}> <b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
             <li className={ css(li) } style={ {width: '14%', textAlign: 'center'} } ><b>Remove</b></li>

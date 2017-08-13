@@ -10,8 +10,8 @@ CREATE TABLE articles(
   url varchar(255),
   img_url varchar(255),
   rating int,
-  date_added date,
-  date_published date,
+  date_added varchar(100),
+  date_published varchar(100),
   bookmarked boolean,
   title varchar(255)
 )

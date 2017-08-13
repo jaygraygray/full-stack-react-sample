@@ -20,9 +20,19 @@ class Bookmark extends Component {
   }
 
 
-  addBookmark(uid, articleInfo) {
+  addBookmark(articleInfo) {
     //insert new bookmark based on userID
     // and passed in info
+    //    const { user_id, url, date_published, title} = req.body
+    const body = {
+      user_id: this.props.uid,
+      url: articleInfo.url,
+      date_published: articleInfo.date_published,
+      title: articleInfo.title
+    }
+
+    axios.post()
+         .then( resp => { this.setState({ saved: true }) })
   }
 
   removeBookmark(uid, articleInfo) {
@@ -34,7 +44,7 @@ class Bookmark extends Component {
     
     if (!this.state.saved) {
       return (
-        <div onClick={ () => { this.addBookmark(this.props.uid, this.props.articleInfo) } }>
+        <div onClick={ () => { this.addBookmark(this.props.articleInfo) } }>
           <img className={ css(img) } src={require('./bookmark-white.svg')} />
         </div>
       );

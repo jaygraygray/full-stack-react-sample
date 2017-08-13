@@ -44,7 +44,7 @@ app.use(passport.session());
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0', 
-{ successRedirect: 'http://localhost:9998'}));
+{ successRedirect: process.env.REACT_APP_CLIENT_SERVER || 'http://localhost:9998'}));
 
 
 app.get('/auth/me', function(req, res) {
@@ -57,7 +57,7 @@ app.get('/auth/me', function(req, res) {
 
 app.get('/auth/logout', function(req, res) {
   req.logout();
-  res.redirect('http://localhost:9998');
+  res.redirect(process.env.REACT_APP_CLIENT_SERVER || 'http://localhost:9998');
 })
 
 // -----------------------------------
@@ -70,14 +70,13 @@ app.get('/search/:item/:page', NYTctrl.search)
 
 app.get('/getarticles/:uid', articles.getInfo)
 app.post('/addArticle', articles.addNew)
-//app.get('/deletearticle', articles.delete)
 app.get('/deletearticle/:uid/:id', articles.delete)
-app.put('/articles/:actionCategory', articles.updateScore)
+
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(`${__dirname}/../build`))
+    app.use(express.static(`${__dirname}/build`))
     app.get('*', (req, res) => {
-        res.sendFile(`$__dirname}/../build/index.html`)
+        res.sendFile(`$__dirname}/build/index.html`)
     })
 }
 

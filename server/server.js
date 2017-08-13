@@ -4,12 +4,12 @@ const
     bodyParser = require('body-parser'),
     cors = require('cors'),
     port = process.env.PORT || 9999,
-    NYTctrl = require('./server/NYTController')
-    config = require('./server/config.js')
+    NYTctrl = require('./NYTController')
+    config = require('./config.js')
     passport = require('./auth')
     session = require('express-session')
     massive = require('massive')
-    articles = require('./server/articlesController')
+    articles = require('./articlesController')
     express = require('express')
 
 // ----------------------------------
@@ -75,9 +75,9 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(`${__dirname}/build`))
+    app.use(express.static(`${__dirname}/../build`))
     app.get('*', (req, res) => {
-        res.sendFile(`$__dirname}/build/index.html`)
+        res.sendFile(`${__dirname}/../build/index.html`)
     })
 }
 

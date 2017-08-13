@@ -19,7 +19,7 @@ const strategy = new Auth0Strategy({
     var user = dbInstance.users.findOne({ id: profile.id } )
         .then(userInfo => {
             console.log(userInfo)
-            if (userInfo !== null) {
+            if (!userInfo) {
                 dbInstance.users.insert({id: profile._json.clientID, username: `${profile.displayName}`, profile_img: `${profile.picture}`})
                 .then(res => res).catch(console.error, 'Error');
             }

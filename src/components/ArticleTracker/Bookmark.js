@@ -8,53 +8,49 @@ class Bookmark extends Component {
     this.state = {
       saved: false
     }
+
+    this.addBookmark = this.addBookmark.bind(this)
   }
 
-  
+
   componentDidMount() {
     axios.get(`/getarticles/${this.props.uid}`)
           .then( resp => { 
-        //check stories for url living on this.props.info.url
-        // if there's a match, then set saved to TRUE
-        // if there's no match, then set saved to FALSE
-            for (let i = 0; i < resp.data.length; i++) {
-              if (resp.data[i].url === this.props.info.url) {
-                this.setState({ saved : true})
-              } else if (resp.data[i].url !== this.props.info.url) {
-                this.setState({ saved: false })
+            resp.data.filter( (item) => {
+              if (item.url === this.props.info.url) {
+                console.log("Bookmark Filter:", item.url)
+                this.setState({ saved: true })
               }
-            }
+            })
           })
+        }
+  
+  addBookmark() {
 
-  }
-
-
-  addBookmark(articleInfo) {
-    //insert new bookmark based on userID
-    // and passed in info
     this.setState({ saved: true })
     const body = {
       user_id: this.props.uid,
-      url: articleInfo.url,
-      date_published: articleInfo.date_published,
-      title: articleInfo.title
+      url: this.props.info.url,
+      date_published: this.props.info.date,
+      title: this.props.info.title
     }
+    console.log("props", this.props)
+    console.log("body", body)
 
     axios.post('/addArticle', body)
-         .then( resp => { this.setState({ saved: true }) })
   }
 
   removeBookmark(uid, articleInfo) {
     this.setState({ saved: false })
+
   }
   render() {
 
     const { img, p } = style
-    // console.log("props: ", this.props.info.url)
-    // console.log("state: ", this.state.stories)
+
     if (this.state.saved === false) {
       return (
-        <div onClick={ () => { this.addBookmark(this.props.info) } }>
+        <div onClick={ this.addBookmark }>
           <p className={ css(p) }> Add Bookmark </p>
           {/* <img className={ css(img) } src={require('./bookmark-white.svg')} /> */}
         </div>

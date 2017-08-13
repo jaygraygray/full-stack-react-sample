@@ -75,17 +75,11 @@ const style = StyleSheet.create({
 
     article: {
         position: 'absolute',
-        left: '120px',
-        bottom: '0',
-        display: 'flex',
-        justifyContent: 'space-around',
-        opacity: '0',
-        width: '100%',
-        height: '100%',
-        ":hover": {
-            opacity: '1'
-        }
-  }
+        top: '-24px',
+        left: '-19px',
+        opacity: '1',
+    }
+  
 })
 
 export default Article;

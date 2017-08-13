@@ -21,7 +21,7 @@ class MinorHeadline extends Component {
     const { container, h1, author, dateStyle, ul, li, article } = style
     const { title, byline, date, url } = this.state
     var articleInfo = _.pick(this.state, 'title', 'date', 'url')
-  
+    console.log('MinorHeadline URL: ', url)
       return (
         
         <div className={ css(container) }>
@@ -81,16 +81,10 @@ const style = StyleSheet.create({
     textAlign: 'right'
   },
   article: {
-    display: 'flex',
-    justifyContent: 'space-around',
     position: 'absolute',
-    bottom: '6px',
-    width: '100%',
-    height: '100%',
-    opacity: '0',
-      ":hover": {
-        opacity: '1'
-      }
+    top: '-24px',
+    left: '-19px',
+    opacity: '1',
   }
 })
 export default MinorHeadline;

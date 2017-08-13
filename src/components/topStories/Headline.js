@@ -121,16 +121,10 @@ const style = StyleSheet.create({
   },
 
   article: {
-    display: 'flex',
-    justifyContent: 'space-around',
     position: 'absolute',
-    bottom: '6px',
-    width: '100%',
-    height: '100%',
-    opacity: '0',
-      ":hover": {
-        opacity: '1'
-      }
+    top: '-24px',
+    left: '-19px',
+    opacity: '1',
   }
 })
 export default Headline;

@@ -30,26 +30,31 @@ class ArticleTracker extends Component {
 
     let menuStyle = null;
     (this.state.menuStatus === '-') ?
-      menuStyle = StyleSheet.create({ menu: { opacity: 1 } }) :
-      menuStyle = StyleSheet.create({ menu: { opacity: 0 } }) 
+      menuStyle = StyleSheet.create({ menu: { opacity: '1' } }) :
+      menuStyle = StyleSheet.create({ menu: { opacity: '0' } }) 
 
-    return (
-      <div className={ css(container) }>
-        <div className={ css(menuTrigger) } onClick={ this.menuAction }>
-          { this.state.menuStatus }
+    if (this.props.id) {
+      return (
+        <div className={ css(container) }>
+          <div className={ css(menuTrigger) } onClick={ this.menuAction }>
+            { this.state.menuStatus }
+          </div>
+          <ul className={ css([ul, menuStyle.menu]) }>
+            {/* <li>
+              <Stars info={this.props.info}
+                    uid={this.props.id}/>
+            </li> */}
+            <li>
+              <Bookmark info={this.props.info}
+                        uid={this.props.id}/>
+            </li>
+          </ul>
         </div>
-        <ul className={ css([ul, menuStyle.menu]) }>
-          {/* <li>
-            <Stars info={this.props.info}
-                   uid={this.props.id}/>
-          </li> */}
-          <li>
-            <Bookmark info={this.props.info}
-                      uid={this.props.id}/>
-          </li>
-        </ul>
-      </div>
-    );
+      ); 
+    } else {
+      return <div>&nbsp;</div>
+    }
+
   }
 }
 const style = StyleSheet.create({
@@ -75,8 +80,7 @@ const style = StyleSheet.create({
     
   },
   container : {
-    height: '100%',
-    width: '100%',
+
   },
   ul: {
     display: 'flex',
@@ -85,7 +89,7 @@ const style = StyleSheet.create({
     alignItems: 'bottom',
     width: '200px',
     background: '#242f36',
-    opacity: '0',
+    zIndex: '-1',
     transition: 'all .2s',
     borderRadius: '18px',
     padding: '24px',

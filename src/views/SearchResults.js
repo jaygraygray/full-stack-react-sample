@@ -22,17 +22,15 @@ class SearchResults extends Component {
   }
 
   componentDidMount() {
+    console.log('mounted')
     this.updateResults(this.props.match.params.query, this.props.match.params.page)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.match.params !== nextProps.match.params) {
-      this.setState({
-        searchTerm: nextProps.match.params.page
-      })
-      this.updateResults(nextProps.match.params.query, nextProps.match.params.page)
-    }
-  }
+  // componentWillUpdate(nextProps) {
+  //   if (this.props.match.params !== nextProps.match.params) {
+  //     return true
+  //   }
+  // }
 
   updateResults(query, page) {
  
@@ -60,7 +58,7 @@ class SearchResults extends Component {
   }
 
   render() {
-
+    
     const results = this.state.searchResults.map( (data, i) => {
     
       let date = moment(data.date).format('h:mm a')
@@ -88,12 +86,9 @@ class SearchResults extends Component {
   return (
     <div className={ css(container) }>
 
-      <div className={ css(breadCrumb) }>
-        <Link to="/home">Home</Link> > Search 
-      </div>
-      
       <ul className={css(ul)}>
         <li className={ css(li) } onClick={ this.PrevPage }> &lt; Previous Page </li>
+        <li> <h1>Search</h1> </li>
         <li className={ css(li) } onClick={ this.NextPage }> Next Page &gt; </li>
       </ul>
     
@@ -107,11 +102,6 @@ class SearchResults extends Component {
 const style = StyleSheet.create({
   container : {
     marginTop: '68px',
-  },
-  breadCrumb: {
-    fontFamily: 'Arial',
-    margin: '109px 0 30px 176px',
-    fontSize: '1rem',
   },
   page: {
     fontFamily: 'Arial',

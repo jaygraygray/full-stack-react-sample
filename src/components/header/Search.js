@@ -38,7 +38,7 @@ class Search extends Component {
 
     return (
 
-      <form onSubmit={ this.search }>
+      <form action={`/search/${this.state.searchTerm}/0`}>
        
         <ul style={ ul }>
          

@@ -6,17 +6,26 @@ class Bookmark extends Component {
   constructor() {
     super()
     this.state = {
-      saved: null
+      saved: false
     }
   }
 
-  // get info for each article from userID that's saved in store
-  // will need to be addBookmark and removeBookmark methods
-  isSaved(articleURL) {
-    // get list of articles
-    // check if saved URL matches this.props.info.url
-    /// if YES: display filled bookmark
-    /// if NO: display empty bookmark
+  
+  componentDidMount() {
+    axios.get(`/getarticles/${this.props.uid}`)
+          .then( resp => { 
+        //check stories for url living on this.props.info.url
+        // if there's a match, then set saved to TRUE
+        // if there's no match, then set saved to FALSE
+            for (let i = 0; i < resp.data.length; i++) {
+              if (resp.data[i].url === this.props.info.url) {
+                this.setState({ saved : true})
+              } else if (resp.data[i].url !== this.props.info.url) {
+                this.setState({ saved: false })
+              }
+            }
+          })
+
   }
 
 
@@ -41,15 +50,16 @@ class Bookmark extends Component {
   render() {
 
     const { img, p } = style
-    
-    if (!this.state.saved) {
+    // console.log("props: ", this.props.info.url)
+    // console.log("state: ", this.state.stories)
+    if (this.state.saved === false) {
       return (
         <div onClick={ () => { this.addBookmark(this.props.info) } }>
           <p className={ css(p) }> Add Bookmark </p>
           {/* <img className={ css(img) } src={require('./bookmark-white.svg')} /> */}
         </div>
       );
-    } else {
+    } else if (this.state.saved === true) {
       return(
         <div>
           <p className={ css(p) }> Remove Bookmark </p>

@@ -5,6 +5,7 @@ import Login from './Login'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { action_getUserID } from '../../ducks/reducer'
+import { withRouter } from 'react-router-dom'
 
 class Header extends Component {
 
@@ -68,4 +69,4 @@ const style = {
     fontSize: '2rem',
   }
 }
-export default connect(null, { action_getUserID })(Header) ;
+export default withRouter(connect(null, { action_getUserID })(Header)) ;

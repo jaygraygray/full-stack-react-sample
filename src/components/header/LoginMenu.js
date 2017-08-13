@@ -35,22 +35,14 @@ class LoginMenu extends Component {
       <div onClick={ this.openMenu } className={ css(menuWrapper) }>
         {this.props.children}
 
-        
 
         <div className={ css([menu, menuActive.menu]) }>
           <ul className={ css(menuUL) }>
-            <Link to={`bookmarks/${this.props.uid}`}>
-              <a className={ css(link) } href="#">
-                <li className={ css(menuLI) }>
-                  Bookmarks
-                </li>
-              </a>
-            </Link>
-            <a className={css(link)} href="#">
+            <Link to={`/bookmarks/${this.props.uid}`} className={ css(link) }>
               <li className={ css(menuLI) }>
-                Ratings
+                Bookmarks
               </li>
-            </a>
+            </Link>
             <a className={css(link)} href="http://localhost:9999/auth/logout">
               <li className={ css(menuLI) }>
                 Logout

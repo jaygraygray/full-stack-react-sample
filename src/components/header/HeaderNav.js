@@ -40,7 +40,7 @@ const style = StyleSheet.create({
   },
   liActive: {
     padding: "0 32px 24px 32px",
-    color: '#242f36',
+    color: '#363324',
     borderWidth: '0 0 3px 0',
     borderStyle: 'solid',
     borderColor: 'orange',

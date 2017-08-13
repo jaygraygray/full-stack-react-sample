@@ -26,12 +26,6 @@ class SearchResults extends Component {
     this.updateResults(this.props.match.params.query, this.props.match.params.page)
   }
 
-  // componentWillUpdate(nextProps) {
-  //   if (this.props.match.params !== nextProps.match.params) {
-  //     return true
-  //   }
-  // }
-
   updateResults(query, page) {
  
     axios.get(`/search/${query}/${page}`)
@@ -101,7 +95,7 @@ class SearchResults extends Component {
 
 const style = StyleSheet.create({
   container : {
-    marginTop: '68px',
+    marginTop: '118px',
   },
   page: {
     fontFamily: 'Arial',

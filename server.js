@@ -4,12 +4,12 @@ const
     bodyParser = require('body-parser'),
     cors = require('cors'),
     port = process.env.PORT || 9999,
-    NYTctrl = require('./NYTController')
-    config = require('./config.js')
+    NYTctrl = require('./server/NYTController')
+    config = require('./server/config.js')
     passport = require('./auth')
     session = require('express-session')
     massive = require('massive')
-    articles = require('./articlesController')
+    articles = require('./server/articlesController')
 
 // ----------------------------------
 // Apply middleware

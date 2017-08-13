@@ -10,6 +10,7 @@ const
     session = require('express-session')
     massive = require('massive')
     articles = require('./server/articlesController')
+    express = require('express')
 
 // ----------------------------------
 // Apply middleware

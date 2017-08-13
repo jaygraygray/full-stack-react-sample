@@ -23,7 +23,7 @@ class Bookmark extends Component {
   addBookmark(articleInfo) {
     //insert new bookmark based on userID
     // and passed in info
-    //    const { user_id, url, date_published, title} = req.body
+    this.setState({ saved: true })
     const body = {
       user_id: this.props.uid,
       url: articleInfo.url,
@@ -31,27 +31,29 @@ class Bookmark extends Component {
       title: articleInfo.title
     }
 
-    axios.post()
+    axios.post('/addArticle', body)
          .then( resp => { this.setState({ saved: true }) })
   }
 
   removeBookmark(uid, articleInfo) {
-    //remove bookmark based on userID
+    this.setState({ saved: false })
   }
   render() {
-    console.log('Bookmark.js: ', this.props.info)
-    const { img } = style
+
+    const { img, p } = style
     
     if (!this.state.saved) {
       return (
-        <div onClick={ () => { this.addBookmark(this.props.articleInfo) } }>
-          <img className={ css(img) } src={require('./bookmark-white.svg')} />
+        <div onClick={ () => { this.addBookmark(this.props.info) } }>
+          <p className={ css(p) }> Add Bookmark </p>
+          {/* <img className={ css(img) } src={require('./bookmark-white.svg')} /> */}
         </div>
       );
     } else {
       return(
         <div>
-          <img className={ css(img) } src={require('./bookmark-black.svg')} />
+          <p className={ css(p) }> Remove Bookmark </p>
+          {/* <img className={ css(img) } src={require('./bookmark-black.svg')} /> */}
         </div> 
       )
     }
@@ -60,6 +62,10 @@ class Bookmark extends Component {
 const style = StyleSheet.create({
   img : {
     width: '32px',
+  },
+  p: {
+    color: "#fff",
+    fontSize: '1.2rem'
   }
 })
 export default Bookmark

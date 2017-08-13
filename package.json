@@ -21,14 +21,15 @@
     "redux": "^3.7.2",
     "request": "^2.81.0",
     "semantic-ui-react": "^0.71.3",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "react-scripts": "1.0.10"
   },
   "devDependencies": {
-    "react-scripts": "1.0.10"
+    
   },
   
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

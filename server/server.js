@@ -16,10 +16,7 @@ const
 // Apply middleware
 // -----------------------------------
 app.use( bodyParser.json() )
-app.use( cors({ 
-    origin: '*'
-    }) 
-)
+
 
 // -----------------------------------
 // Setup DB conn

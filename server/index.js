@@ -72,11 +72,11 @@ app.post('/addArticle', articles.addNew)
 app.get('/deletearticle/:uid/:id', articles.delete)
 
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(__dirname + '/../build'))
-    app.get('*', (req, res) => {
-        res.sendFile(__dirname + '/../build/index.html')
-    })
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(express.static(__dirname + '/../build'))
+//     app.get('*', (req, res) => {
+//         res.sendFile(__dirname + '/../build/index.html')
+//     })
+// }
 
 app.listen(port, console.log("Connected on port ", port))

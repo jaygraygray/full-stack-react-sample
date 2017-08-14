@@ -40,14 +40,14 @@ class SearchResults extends Component {
   NextPage() {
     let page = parseInt(this.props.match.params.page)
     page++
-    this.props.history.push(`/search/${this.props.match.params.query}/${page}`) 
+    this.props.history.push(`/searchresults/${this.props.match.params.query}/${page}`) 
     this.updateResults(this.props.match.params.query, page)
   }
 
   PrevPage() {
     let page = parseInt(this.props.match.params.page)
     page--
-    this.props.history.push(`/search/${this.props.match.params.query}/${this.props.match.params.page}`)
+    this.props.history.push(`/searchresults/${this.props.match.params.query}/${this.props.match.params.page}`)
     this.updateResults(this.props.match.params.query, page)
   }
 

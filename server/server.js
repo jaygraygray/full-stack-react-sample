@@ -16,7 +16,7 @@ const
 // Apply middleware
 // -----------------------------------
 app.use( bodyParser.json() )
-
+app.use(bodyParser.urlencoded({extended: false}))
 
 // -----------------------------------
 // Setup DB conn
@@ -72,7 +72,7 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(`${__dirname}/../build/index.html`))
+    app.use(express.static(`${__dirname}/../build`))
     app.get('*', (req, res) => {
         res.sendFile(`${__dirname}/../build/index.html`)
     })

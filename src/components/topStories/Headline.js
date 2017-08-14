@@ -56,7 +56,7 @@ class Headline extends Component {
             </li>
             
             <li>
-               {/* <img src={ imgData && imgData[0].url } alt="Headline"/>  */}
+                <img src={ imgData && imgData[0].url } alt="Headline"/>  
             </li>
           
           </ul>

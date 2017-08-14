@@ -88,10 +88,10 @@ class Bookmarks extends Component {
       articles = this.state.articles.map( (article) => {
         return (
           <ul className={ css(ul) }>
-            <li className={ css(li, title) } style={ {width: '48%'} }> <a href={ article.url }> { article.title}  </a></li>
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} }>{ moment(article.published).format('MMM Do YYYY') }</li> 
-            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do YYYY') }</li> 
-            <li className={ css(li, remove) } style={ {width: '14%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
+            <li className={ css(li, title) } style={ {width: '56%'} }> <a href={ article.url }> { article.title}  </a></li>
+            <li className={ css(li) } style={ {width: '18%', textAlign: 'center'} }>{ moment(article.date_published).format('MMM Do h:mm a') }</li> 
+            <li className={ css(li) } style={ {width: '16%', textAlign: 'center'} }>{ moment(article.date_added).format('MMM Do h:mm a') }</li> 
+            <li className={ css(li, remove) } style={ {width: '10%', textAlign: 'center'} } onClick={ () => { this.removeArticle(article.id) }}>x</li>
           </ul>
         )
       })
@@ -103,10 +103,10 @@ class Bookmarks extends Component {
 
       <h1 className={ css(h1) }>Bookmarks</h1>
           <ul className={ css(ul) }>
-            <li className={ css(li) } style={ {width: '48%'} } onClick={ this.filterByTitle }><b>Title</b>&nbsp;&nbsp; [ Sort: { this.state.titleFilter } ]</li>
-            <li className={ css(li) } style={ {width: '30%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published }</li> 
-            <li className={ css(li) } style={ {width: '28%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}><b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
-            <li className={ css(li) } style={ {width: '14%', textAlign: 'center'} } ><b>Remove</b></li>
+            <li className={ css(li) } style={ {width: '56%'} } onClick={ this.filterByTitle }><b>Title</b>&nbsp;&nbsp; [ Sort: { this.state.titleFilter } ]</li>
+            <li className={ css(li) } style={ {width: '18%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_published') }}><b>Date Published</b>&nbsp;&nbsp; { this.state.date_published }</li> 
+            <li className={ css(li) } style={ {width: '16%', textAlign: 'center'} } onClick={ () => { this.filterByDate('date_added') }}><b>Date Added</b> &nbsp;&nbsp; { this.state.date_added }</li> 
+            <li className={ css(li) } style={ {width: '10%', textAlign: 'center'} } ><b>Remove</b></li>
           </ul>
           { articles }
 
@@ -143,7 +143,6 @@ const style = StyleSheet.create({
     margin: 'auto'
   },
   ul: {
-    marginTop: '-14px',
     padding: '0',
     display: 'flex',
     listStyle: 'none',
@@ -159,6 +158,7 @@ const style = StyleSheet.create({
     borderColor: '#cccccc',
     borderWidth: '0 0 1px 0',
     padding: '33px 12px 33px 12px',
+    wordWrap: 'none',
   }
 })
 export default connect( state => {

@@ -35,7 +35,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(express.static(__dirname + '/build'))
 
 // -----------------------------------
 // auth end points
@@ -78,5 +78,7 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 //         res.sendFile(__dirname + '/../build/index.html')
 //     })
 // }
-
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/build/index.html') 
+})
 app.listen(port, console.log("Connected on port ", port))

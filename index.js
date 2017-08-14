@@ -4,12 +4,12 @@ const
     bodyParser = require('body-parser'),
     cors = require('cors'),
     port = process.env.PORT || 80,
-    NYTctrl = require('/server/NYTController')
-    config = require('/server/config.js')
-    passport = require('/server/auth')
+    NYTctrl = require('./server/NYTController')
+    config = require('./server/config.js')
+    passport = require('./server/auth')
     session = require('express-session')
     massive = require('massive')
-    articles = require('/server/articlesController')
+    articles = require('./server/articlesController')
     express = require('express')
 
 // ----------------------------------
@@ -35,7 +35,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(__dirname + '../build'))
+app.use(express.static(__dirname + './build'))
 
 // -----------------------------------
 // auth end points
@@ -80,9 +80,9 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 // }
 
 
-app.use(express.static('build'));
+
 app.get('*', function (req, res) {
-  res.sendFile(__dirname + '/build/index.html');
+  res.sendFile(__dirname + './build/index.html');
 });
 
 app.listen(port, console.log("Connected on port ", port))

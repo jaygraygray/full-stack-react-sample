@@ -44,7 +44,7 @@ class ArticleTracker extends Component {
               <Stars info={this.props.info}
                     uid={this.props.id}/>
             </li> */}
-            <li>
+            <li onClick={ this.menuAction }>
               <Bookmark info={this.props.info}
                         uid={this.props.id}/>
             </li>

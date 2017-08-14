@@ -24,6 +24,9 @@
     "underscore": "^1.8.3",
     "react-scripts": "1.0.10"
   },
+  "engines": {
+      "node": "6.11.0"
+    },
   "devDependencies": {
     
   },

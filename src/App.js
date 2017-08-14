@@ -16,7 +16,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route path="/bookmarks/:uid" component={ Bookmarks } />
-            <Route path="/search/:query/:page" component={ SearchResults } /> 
+            <Route path="/searchresults/:query/:page" component={ SearchResults } /> 
             <Route path="/article/:url" component={ Articles } />
             <Route exact path="/" component= {Home } />
             <Route path="/:section" component={ Home } />

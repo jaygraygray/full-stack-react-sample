@@ -23,8 +23,8 @@ module.exports = {
           title: data.title,
           url: data.url
         }
-      })
-      response.send( results ) 
+      })   
+      response.send(results)
     }) 
   },
 
@@ -50,7 +50,7 @@ module.exports = {
           date: data.pub_date
         }
       })
-      response.send(results)
+      response.send(results) 
       
     })
   }

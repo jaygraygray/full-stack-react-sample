@@ -20,7 +20,7 @@ class Search extends Component {
   search(e) {
     e.preventDefault()
     console.log(e)
-    this.props.history.push('/search/' + this.state.searchTerm + '/0')
+    this.props.history.push('/searchresults/' + this.state.searchTerm + '/0')
   }
 
   //logs the value of what's being searched
@@ -38,7 +38,7 @@ class Search extends Component {
 
     return (
 
-      <form action={`/search/${this.state.searchTerm}/0`}>
+      <form action={`/searchresults/${this.state.searchTerm}/0`}>
        
         <ul style={ ul }>
          

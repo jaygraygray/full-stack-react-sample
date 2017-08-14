@@ -4,12 +4,12 @@ const
     bodyParser = require('body-parser'),
     cors = require('cors'),
     port = process.env.PORT || 80,
-    NYTctrl = require('./NYTController')
-    config = require('./config.js')
-    passport = require('./auth')
+    NYTctrl = require('/server/NYTController')
+    config = require('/server/config.js')
+    passport = require('/server/auth')
     session = require('express-session')
     massive = require('massive')
-    articles = require('./articlesController')
+    articles = require('/server/articlesController')
     express = require('express')
 
 // ----------------------------------

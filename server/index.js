@@ -79,7 +79,9 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 //     })
 // }
 
+
 app.get('*', function(req, res) {
+var path = require('path');
   res.sendFile(path.resolve('/build/index.html')) 
 })
 app.listen(port, console.log("Connected on port ", port))

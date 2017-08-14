@@ -81,7 +81,7 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 
 
 app.get('*', function(req, res) {
-var path = require('path');
-  res.sendFile(path.resolve('/build/index.html')) 
+  const index = path.join(__dirname, 'build', 'index.html');
+  res.sendFile(index);
 })
 app.listen(port, console.log("Connected on port ", port))

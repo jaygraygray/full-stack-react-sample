@@ -11,7 +11,7 @@ class Login extends Component {
     if (!this.props.user) {
       return (
         <div>
-          <a className={ css(a) } href="/auth">Log In</a>
+          <a className={ css(a) } href="http://localhost:9999/auth">Log In</a>
         </div>
       );
     } else {

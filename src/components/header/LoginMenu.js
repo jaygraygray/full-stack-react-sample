@@ -43,7 +43,7 @@ class LoginMenu extends Component {
                 Bookmarks
               </li>
             </Link>
-            <a className={css(link)} href="/auth/logout">
+            <a className={css(link)} href="http://nytbrowser.herokuapp.com/auth/logout">
               <li className={ css(menuLI) }>
                 Logout
               </li>

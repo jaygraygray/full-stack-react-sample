@@ -80,8 +80,9 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 // }
 
 
-app.get('*', function(req, res) {
-  const index = path.join(__dirname, 'build', 'index.html');
-  res.sendFile(index);
-})
+app.use(express.static('build'));
+app.get('*', function (req, res) {
+  res.sendFile('index.html');
+});
+
 app.listen(port, console.log("Connected on port ", port))

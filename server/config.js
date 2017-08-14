@@ -8,6 +8,6 @@ module.exports = {
         "domain" : "jaygray.auth0.com",
         "clientID": "HDA0TOHPtKImTpMNh59V9DQ62HVZMo8m",
         "clientSecret": "qu2HO_vSD_axuRUXF94kKxVT_VZyTKb96QbV2jfCrJFlTD3TabiDShEs8eCW_PHz",
-        "callbackUrl": "http://localhost:9999/auth/callback"
+        "callbackUrl": "/auth/callback"
     }
 }

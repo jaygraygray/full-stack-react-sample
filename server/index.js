@@ -3,7 +3,7 @@ const
     app = require('express')(),
     bodyParser = require('body-parser'),
     cors = require('cors'),
-    port = process.env.PORT || 9999,
+    port = process.env.PORT || 80,
     NYTctrl = require('./NYTController')
     config = require('./config.js')
     passport = require('./auth')
@@ -73,9 +73,9 @@ app.get('/deletearticle/:uid/:id', articles.delete)
 
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(`${__dirname}/../build`))
+    app.use(express.static(__dirname + '/build'))
     app.get('*', (req, res) => {
-        res.sendFile(`${__dirname}/../build/index.html`)
+        res.sendFile(__dirname + '/build/index.html')
     })
 }
 
